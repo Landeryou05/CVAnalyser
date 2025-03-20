@@ -15,8 +15,8 @@ public class UIMainMenu {
         try {
             InputStream myStream = new BufferedInputStream(new FileInputStream("Resources/Montserrat-Light.ttf"));
             Font font = Font.createFont(Font.TRUETYPE_FONT, myStream);
-            fontTitle = font.deriveFont(Font.PLAIN, 30);
-            fontButtons = font.deriveFont(Font.PLAIN, 15);
+            fontTitle = font.deriveFont(Font.PLAIN, 35);
+            fontButtons = font.deriveFont(Font.PLAIN, 20);
         } catch (Exception e) {
             fontTitle = (new Font("Roboto", Font.PLAIN, 30));
             fontButtons = (new Font("Roboto", Font.PLAIN, 15));
@@ -72,7 +72,9 @@ public class UIMainMenu {
 
         // Defining attributes to frame
         frame.setTitle("CV Analyser | Main Menu");
-        frame.setSize(350, 450);
+        Image favicon = Toolkit.getDefaultToolkit().getImage("Resources/Favicon.png");
+        frame.setIconImage(favicon);
+        frame.setSize(450, 550);
         frame.setResizable(false);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setVisible(true);
@@ -94,7 +96,7 @@ public class UIMainMenu {
 
         // Defining attributes to addCVButton
         addCVButton.setText("Add a CV");
-        addCVButton.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
+        addCVButton.setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
         addCVButton.setForeground(new Color(255, 255, 255));
         addCVButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         addCVButton.setFont(fontButtons);
@@ -103,7 +105,7 @@ public class UIMainMenu {
 
         // Defining attributes to cvRankedList
         cvRankedListButton.setText("Display Ranked List");
-        cvRankedListButton.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
+        cvRankedListButton.setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
         cvRankedListButton.setForeground(new Color(255, 255, 255));
         cvRankedListButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         cvRankedListButton.setFont(fontButtons);
@@ -112,7 +114,7 @@ public class UIMainMenu {
 
         // Defining attributes to quitButton
         quitButton.setText("Quit");
-        quitButton.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
+        quitButton.setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
         quitButton.setForeground(new Color(255, 255, 255));
         quitButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         quitButton.setFont(fontButtons);
