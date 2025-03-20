@@ -1,6 +1,6 @@
-package Functionality;
+package functionality;
 
-public class Func_Menu {
+public class FuncMenu {
     public static void main(String[] args) {
         System.out.println("Hello World");
     }
