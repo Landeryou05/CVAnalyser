@@ -1,4 +1,6 @@
-package ui;
+package ui.pages;
+
+import ui.UIQuit;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -7,25 +9,24 @@ import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.InputStream;
 
-public class UIMainMenu {
-    public static void MainMenu_Frame(){
+public class UIMainMenu{
+    public static JPanel mainMenuPanel(){
         Font fontTitle = null;
-        Font fontButtons = null;
+        Font fontElements = null;
 
         try {
             InputStream myStream = new BufferedInputStream(new FileInputStream("Resources/Montserrat-Light.ttf"));
             Font font = Font.createFont(Font.TRUETYPE_FONT, myStream);
             fontTitle = font.deriveFont(Font.PLAIN, 35);
-            fontButtons = font.deriveFont(Font.PLAIN, 20);
+            fontElements = font.deriveFont(Font.PLAIN, 20);
         } catch (Exception e) {
             fontTitle = (new Font("Roboto", Font.PLAIN, 30));
-            fontButtons = (new Font("Roboto", Font.PLAIN, 15));
+            fontElements = (new Font("Roboto", Font.PLAIN, 15));
         }
 
-        // Declaring instances of tools
-        JFrame frame = new JFrame();
+        // Declaring instances of components
         JPanel mainPanel = new JPanel();
-        JPanel buttonPanel = new JPanel(){
+        JPanel elementsPanel = new JPanel(){
             @Override
             protected void paintComponent(Graphics g){
                 super.paintComponent(g);
@@ -71,21 +72,15 @@ public class UIMainMenu {
         };
 
         // Defining attributes to frame
-        frame.setTitle("CV Analyser | Main Menu");
-        Image favicon = Toolkit.getDefaultToolkit().getImage("Resources/Favicon.png");
-        frame.setIconImage(favicon);
-        frame.setSize(450, 550);
-        frame.setResizable(false);
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.setVisible(true);
+
 
         // Defining attributes to mainPanel
         mainPanel.setBackground(new Color(30,30,30));
         mainPanel.setOpaque(true);
 
-        // Defining attributes to buttonPanel
-        buttonPanel.setOpaque(false);
-        buttonPanel.setBorder(new EmptyBorder(30,30,30,30));
+        // Defining attributes to elementsPanel
+        elementsPanel.setOpaque(false);
+        elementsPanel.setBorder(new EmptyBorder(30,30,30,30));
 
         // Defining attributes to pageTitle
         pageTitle.setText("Main Menu");
@@ -99,42 +94,60 @@ public class UIMainMenu {
         addCVButton.setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
         addCVButton.setForeground(new Color(255, 255, 255));
         addCVButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        addCVButton.setFont(fontButtons);
+        addCVButton.setFont(fontElements);
         addCVButton.setContentAreaFilled(false);
         addCVButton.setFocusPainted(false);
+
+        addCVButton.addActionListener(e -> {
+            mainPanel.removeAll();
+            mainPanel.add(UIAddCVFile.addCVFile());
+            mainPanel.revalidate();
+            mainPanel.repaint();
+        });
 
         // Defining attributes to cvRankedList
         cvRankedListButton.setText("Display Ranked List");
         cvRankedListButton.setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
         cvRankedListButton.setForeground(new Color(255, 255, 255));
         cvRankedListButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        cvRankedListButton.setFont(fontButtons);
+        cvRankedListButton.setFont(fontElements);
         cvRankedListButton.setContentAreaFilled(false);
         cvRankedListButton.setFocusPainted(false);
+
+        cvRankedListButton.addActionListener(e -> {
+            mainPanel.removeAll();
+            mainPanel.add(UIRankedList.rankedList());
+            mainPanel.revalidate();
+            mainPanel.repaint();
+        });
 
         // Defining attributes to quitButton
         quitButton.setText("Quit");
         quitButton.setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
         quitButton.setForeground(new Color(255, 255, 255));
         quitButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        quitButton.setFont(fontButtons);
+        quitButton.setFont(fontElements);
         quitButton.setContentAreaFilled(false);
         quitButton.setFocusPainted(false);
 
-        // Adding buttons to button container
-        buttonPanel.add(pageTitle);
-        buttonPanel.add(Box.createVerticalStrut(45));
-        buttonPanel.add(addCVButton);
-        buttonPanel.add(Box.createVerticalStrut(35));
-        buttonPanel.add(cvRankedListButton);
-        buttonPanel.add(Box.createVerticalStrut(35));
-        buttonPanel.add(quitButton);
+        quitButton.addActionListener(e -> UIQuit.quitProgram());
 
-        buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
+        // Adding buttons to button container
+        elementsPanel.add(pageTitle);
+        elementsPanel.add(Box.createVerticalStrut(45));
+        elementsPanel.add(addCVButton);
+        elementsPanel.add(Box.createVerticalStrut(35));
+        elementsPanel.add(cvRankedListButton);
+        elementsPanel.add(Box.createVerticalStrut(35));
+        elementsPanel.add(quitButton);
+
+        elementsPanel.setLayout(new BoxLayout(elementsPanel, BoxLayout.Y_AXIS));
 
         mainPanel.setLayout(new GridBagLayout());
-        mainPanel.add(buttonPanel);
+        mainPanel.add(elementsPanel);
 
-        frame.add(mainPanel);
+        mainPanel.setVisible(true);
+
+        return mainPanel;
     }
 }
