@@ -1,9 +1,6 @@
-package ui;
+package frontend;
 
-import javax.swing.*;
-import javax.swing.border.EmptyBorder;
-
-public class UIQuit {
+public class FrontQuit {
     public static void quitConfirm(){
     }
 

@@ -1,6 +1,6 @@
-package ui.pages;
+package frontend.pages;
 
-import ui.UIQuit;
+import frontend.FrontQuit;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -9,7 +9,7 @@ import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.InputStream;
 
-public class UIMainMenu{
+public class FrontMainMenu {
     public static JPanel mainMenuPanel(){
         Font fontTitle = null;
         Font fontElements = null;
@@ -71,9 +71,6 @@ public class UIMainMenu{
             }
         };
 
-        // Defining attributes to frame
-
-
         // Defining attributes to mainPanel
         mainPanel.setBackground(new Color(30,30,30));
         mainPanel.setOpaque(true);
@@ -100,7 +97,7 @@ public class UIMainMenu{
 
         addCVButton.addActionListener(e -> {
             mainPanel.removeAll();
-            mainPanel.add(UIAddCVFile.addCVFile());
+            mainPanel.add(FrontAddCVFile.addCVFile());
             mainPanel.revalidate();
             mainPanel.repaint();
         });
@@ -116,7 +113,7 @@ public class UIMainMenu{
 
         cvRankedListButton.addActionListener(e -> {
             mainPanel.removeAll();
-            mainPanel.add(UIRankedList.rankedList());
+            mainPanel.add(FontRankedList.rankedList());
             mainPanel.revalidate();
             mainPanel.repaint();
         });
@@ -130,7 +127,7 @@ public class UIMainMenu{
         quitButton.setContentAreaFilled(false);
         quitButton.setFocusPainted(false);
 
-        quitButton.addActionListener(e -> UIQuit.quitProgram());
+        quitButton.addActionListener(e -> FrontQuit.quitProgram());
 
         // Adding buttons to button container
         elementsPanel.add(pageTitle);

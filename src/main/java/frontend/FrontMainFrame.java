@@ -1,12 +1,14 @@
-package ui.pages;
+package frontend;
+
+import frontend.pages.FrontMainMenu;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class UIMainFrame {
+public class FrontMainFrame {
     public static void mainFrame(){
         JFrame frame = new JFrame();
-        UIMainMenu mainMenu = new UIMainMenu();
+        FrontMainMenu mainMenu = new FrontMainMenu();
 
         frame.setTitle("CV Analyser | Main Menu");
         Image favicon = Toolkit.getDefaultToolkit().getImage("Resources/Favicon.png");

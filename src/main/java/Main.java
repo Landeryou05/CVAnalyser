@@ -1,12 +1,12 @@
-import ui.UIError;
-import ui.pages.UIMainFrame;
+import frontend.FrontError;
+import frontend.FrontMainFrame;
 
 public class Main {
     public static void main(String[] args){
         try{
-            UIMainFrame.mainFrame();
+            FrontMainFrame.mainFrame();
         }catch (Exception e){
-            UIError.errorFrame();
+            FrontError.errorFrame();
         }
     }
 }

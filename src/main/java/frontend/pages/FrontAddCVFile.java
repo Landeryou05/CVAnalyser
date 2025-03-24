@@ -1,6 +1,4 @@
-package ui.pages;
-
-import ui.UIError;
+package frontend.pages;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -13,7 +11,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 
-public class UIAddCVFile{
+public class FrontAddCVFile {
     public static JPanel addCVFile(){
 
         // Importing the font
@@ -32,31 +30,51 @@ public class UIAddCVFile{
 
         // Creating instances of components
         JPanel addCVPanel = new JPanel();
-        JLabel pageTitle = new JLabel();
-        JPanel elementsPanel = new JPanel(){
+        JPanel selectedFilePanel = new JPanel(){
             @Override
             protected void paintComponent(Graphics g){
-                Graphics2D graphics2D = (Graphics2D) g;
-                graphics2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-                graphics2D.fillRoundRect(0,0, getWidth(), getHeight(), 40,40);
                 super.paintComponent(g);
-            }
-        };
-
-        JComboBox fileTypeSelection = new JComboBox();
-        JButton openFileExplorer = new JButton(){
-            @Override
-            protected void paintComponent(Graphics g){
-                try{
-                    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-                }catch (Exception exception){
-                    UIError.errorFrame();
-                }
-
                 Graphics2D graphics2D = (Graphics2D) g;
                 graphics2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
                 graphics2D.setColor(new Color(85,85,85));
                 graphics2D.fillRoundRect(0,0, getWidth(), getHeight(), 20,20);
+            }
+        };
+
+        JLabel pageTitle = new JLabel();
+        JLabel chosenFileDisplay = new JLabel();
+        chosenFileDisplay.setText("Select a File");
+        JButton openFileExplorer = new JButton(){
+            @Override
+            protected void paintComponent(Graphics g){
+                Graphics2D graphics2D = (Graphics2D) g;
+                graphics2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                graphics2D.setColor(new Color(85,85,85));
+                graphics2D.fillRoundRect(0,0, getWidth(), getHeight(), 20,20);
+                super.paintComponent(g);
+            }
+        };
+
+        JPanel elementsPanel = new JPanel(){
+            @Override
+            protected void paintComponent(Graphics g){
+                super.paintComponent(g);
+                Graphics2D graphics2D = (Graphics2D) g;
+                graphics2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                graphics2D.fillRoundRect(0,0, getWidth(), getHeight(), 40,40);
+            }
+        };
+
+        JComboBox fileTypeSelection = new JComboBox();
+
+        JButton submitButton = new JButton(){
+            @Override
+            protected void paintComponent(Graphics g){
+                Graphics2D graphics2D = (Graphics2D) g;
+                graphics2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                graphics2D.setColor(new Color(85,85,85));
+                graphics2D.fillRoundRect(0,0, getWidth(), getHeight(), 20,20);
+
                 super.paintComponent(g);
             }
         };
@@ -64,27 +82,27 @@ public class UIAddCVFile{
         JButton backButton = new JButton(){
             @Override
             protected void paintComponent(Graphics g){
-                try{
-                    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-                }catch (Exception exception){
-                    UIError.errorFrame();
-                }
-
                 Graphics2D graphics2D = (Graphics2D) g;
                 graphics2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
                 graphics2D.setColor(new Color(85,85,85));
                 graphics2D.fillRoundRect(0,0, getWidth(), getHeight(), 20,20);
+
                 super.paintComponent(g);
             }
         };
 
         // Defining attributes for addCVPanel
-        addCVPanel.setOpaque(false);
+        addCVPanel.setBackground(new Color(30,30,30));
+        addCVPanel.setOpaque(true);
 
         // Defining attributes for elementsPanel
         elementsPanel.setOpaque(false);
         elementsPanel.setBorder(new EmptyBorder(30,30,30,30));
         elementsPanel.setLayout(new BoxLayout(elementsPanel, BoxLayout.Y_AXIS));
+        elementsPanel.setBackground(new Color(55,55,55));
+
+        selectedFilePanel.setVisible(true);
+        selectedFilePanel.setBackground(new Color(55,55,55));
 
         // Defining attributes for pageTitle
         pageTitle.setText("Add a CV");
@@ -112,6 +130,8 @@ public class UIAddCVFile{
         openFileExplorer.setText("Choose File");
         openFileExplorer.setFont(fontElements);
 
+        chosenFileDisplay.setPreferredSize(new Dimension(150, 50));
+
         openFileExplorer.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -125,13 +145,24 @@ public class UIAddCVFile{
 
                     File chosenFile = addCVFile.getSelectedFile();
 
-                    JLabel chosenFileDisplay = new JLabel();
-
+                    //chosenFileDisplay.setText(chosenFile.getName());
                     chosenFileDisplay.setText(chosenFile.getAbsolutePath());
-                    chosenFileDisplay.setVisible(true);
-                    elementsPanel.add(chosenFileDisplay);
                 }
             }
+        });
+
+        submitButton.setText("Submit CV");
+        submitButton.setBorder(BorderFactory.createEmptyBorder(15,15,15,15));
+        submitButton.setForeground(new Color(255, 255, 255));
+        submitButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        submitButton.setContentAreaFilled(false);
+        submitButton.setFocusPainted(false);
+        submitButton.setFont(fontElements);
+        submitButton.addActionListener(e -> {
+            addCVPanel.removeAll();
+            addCVPanel.add(FrontAddCVFile.addCVFile());
+            addCVPanel.revalidate();
+            addCVPanel.repaint();
         });
 
         backButton.setText("Previous");
@@ -143,17 +174,21 @@ public class UIAddCVFile{
         backButton.setFont(fontElements);
         backButton.addActionListener(e -> {
             addCVPanel.removeAll();
-            addCVPanel.add(UIMainMenu.mainMenuPanel());
+            addCVPanel.add(FrontMainMenu.mainMenuPanel());
             addCVPanel.revalidate();
             addCVPanel.repaint();
         });
 
+        selectedFilePanel.add(openFileExplorer);
+        selectedFilePanel.add(chosenFileDisplay);
 
         elementsPanel.add(pageTitle);
         elementsPanel.add(Box.createVerticalStrut(35));
         elementsPanel.add(fileTypeSelection);
         elementsPanel.add(Box.createVerticalStrut(25));
-        elementsPanel.add(openFileExplorer);
+        elementsPanel.add(selectedFilePanel);
+        elementsPanel.add(Box.createVerticalStrut(25));
+        elementsPanel.add(submitButton);
         elementsPanel.add(Box.createVerticalStrut(25));
         elementsPanel.add(backButton);
         addCVPanel.add(elementsPanel);
