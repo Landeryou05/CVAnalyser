@@ -12,6 +12,7 @@ import java.io.File;
 
 public class FrontAddCVFile {
     public static JPanel addCVFile(){
+
         // Creating instances of components
         JPanel addCVPanel = new JPanel();
         JPanel selectedFilePanel = new JPanel(){
@@ -26,7 +27,6 @@ public class FrontAddCVFile {
         };
 
         FrontFont font = new FrontFont();
-
         JLabel pageTitle = new JLabel();
         JLabel chosenFileDisplay = new JLabel();
         chosenFileDisplay.setText("(Selected File)");
@@ -109,7 +109,7 @@ public class FrontAddCVFile {
         fileTypeSelection.setFont(font.fontElements());
 
         // Defining attributes for openFileExplorer
-        openFileExplorer.setBorder(BorderFactory.createEmptyBorder(15,15,15,15));
+        openFileExplorer.setBorder(BorderFactory.createEmptyBorder(16,25,15,0));
         openFileExplorer.setForeground(new Color(255, 255, 255));
         openFileExplorer.setAlignmentX(Component.CENTER_ALIGNMENT);
         openFileExplorer.setContentAreaFilled(false);
@@ -120,6 +120,7 @@ public class FrontAddCVFile {
         chosenFileDisplay.setPreferredSize(new Dimension(150, 50));
         chosenFileDisplay.setFont(font.fontElements());
         chosenFileDisplay.setForeground(new Color(255,255,255));
+        chosenFileDisplay.setBorder(BorderFactory.createEmptyBorder(15,25,15,0));
 
         openFileExplorer.addActionListener(new ActionListener() {
             @Override
@@ -131,10 +132,7 @@ public class FrontAddCVFile {
                 addCVFile.addChoosableFileFilter(new FileNameExtensionFilter("Text File (.txt)", "txt"));
 
                 if(addCVFile.showOpenDialog(null) == JFileChooser.APPROVE_OPTION){
-
                     File chosenFile = addCVFile.getSelectedFile();
-
-                    //chosenFileDisplay.setText(chosenFile.getName());
                     chosenFileDisplay.setText(chosenFile.getName());
                 }
             }

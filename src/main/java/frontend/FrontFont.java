@@ -12,10 +12,10 @@ public class FrontFont {
         try {
             InputStream myStream = new BufferedInputStream(new FileInputStream("Resources/Montserrat-Light.ttf"));
             Font font = Font.createFont(Font.TRUETYPE_FONT, myStream);
-            fontTitle = font.deriveFont(Font.PLAIN, 30);
+            fontTitle = font.deriveFont(Font.PLAIN, 35);
             return fontTitle;
         } catch (Exception e) {
-            fontTitle = (new Font("Roboto", Font.PLAIN, 30));
+            fontTitle = (new Font("Roboto", Font.PLAIN, 35));
             return fontTitle;
         }
     }
@@ -26,10 +26,10 @@ public class FrontFont {
         try {
             InputStream myStream = new BufferedInputStream(new FileInputStream("Resources/Montserrat-Light.ttf"));
             Font font = Font.createFont(Font.TRUETYPE_FONT, myStream);
-            fontElements = font.deriveFont(Font.PLAIN, 15);
+            fontElements = font.deriveFont(Font.PLAIN, 17);
             return fontElements;
         } catch (Exception e) {
-            fontElements = (new Font("Roboto", Font.PLAIN, 30));
+            fontElements = (new Font("Roboto", Font.PLAIN, 17));
             return fontElements;
         }
     }

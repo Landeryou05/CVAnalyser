@@ -11,7 +11,7 @@ public class FrontMainFrame {
         FrontMainMenu mainMenu = new FrontMainMenu();
 
         frame.setTitle("CV Analyser | Main Menu");
-        Image favicon = Toolkit.getDefaultToolkit().getImage("Resources/Favicon.png");
+        Image favicon = Toolkit.getDefaultToolkit().getImage("Resources/Logo.jpg");
         frame.setIconImage(favicon);
         frame.setSize(450, 550);
         frame.setResizable(false);

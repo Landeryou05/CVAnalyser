@@ -1,4 +1,3 @@
-import frontend.FrontError;
 import frontend.FrontMainFrame;
 
 public class Main {
@@ -6,7 +5,7 @@ public class Main {
         try{
             FrontMainFrame.mainFrame();
         }catch (Exception e){
-            FrontError.errorFrame();
+            System.out.println(e);
         }
     }
 }
