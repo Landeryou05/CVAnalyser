@@ -1,33 +1,17 @@
 package frontend.pages;
 
+import frontend.FrontFont;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedInputStream;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
 
 public class FrontAddCVFile {
     public static JPanel addCVFile(){
-
-        // Importing the font
-        Font fontTitle = null;
-        Font fontElements = null;
-
-        try {
-            InputStream myStream = new BufferedInputStream(new FileInputStream("Resources/Montserrat-Light.ttf"));
-            Font font = Font.createFont(Font.TRUETYPE_FONT, myStream);
-            fontTitle = font.deriveFont(Font.PLAIN, 30);
-            fontElements = font.deriveFont(Font.PLAIN, 15);
-        } catch (Exception e) {
-            fontTitle = (new Font("Roboto", Font.PLAIN, 30));
-            fontElements = (new Font("Roboto", Font.PLAIN, 15));
-        }
-
         // Creating instances of components
         JPanel addCVPanel = new JPanel();
         JPanel selectedFilePanel = new JPanel(){
@@ -41,9 +25,11 @@ public class FrontAddCVFile {
             }
         };
 
+        FrontFont font = new FrontFont();
+
         JLabel pageTitle = new JLabel();
         JLabel chosenFileDisplay = new JLabel();
-        chosenFileDisplay.setText("Select a File");
+        chosenFileDisplay.setText("(Selected File)");
         JButton openFileExplorer = new JButton(){
             @Override
             protected void paintComponent(Graphics g){
@@ -101,6 +87,7 @@ public class FrontAddCVFile {
         elementsPanel.setLayout(new BoxLayout(elementsPanel, BoxLayout.Y_AXIS));
         elementsPanel.setBackground(new Color(55,55,55));
 
+        // Defining selectedFilePanel
         selectedFilePanel.setVisible(true);
         selectedFilePanel.setBackground(new Color(55,55,55));
 
@@ -109,7 +96,7 @@ public class FrontAddCVFile {
         pageTitle.setVisible(true);
         pageTitle.setAlignmentX(Component.CENTER_ALIGNMENT);
         pageTitle.setForeground(new Color(255,255,255));
-        pageTitle.setFont(fontTitle);
+        pageTitle.setFont(font.fontTitle());
 
         // Defining attributes for fileTypeSelection
         fileTypeSelection.addItem("Text File (.txt)");
@@ -119,7 +106,7 @@ public class FrontAddCVFile {
         fileTypeSelection.setForeground(new Color(255,255,255));
         fileTypeSelection.setOpaque(true);
         fileTypeSelection.setVisible(true);
-        fileTypeSelection.setFont(fontElements);
+        fileTypeSelection.setFont(font.fontElements());
 
         // Defining attributes for openFileExplorer
         openFileExplorer.setBorder(BorderFactory.createEmptyBorder(15,15,15,15));
@@ -128,9 +115,11 @@ public class FrontAddCVFile {
         openFileExplorer.setContentAreaFilled(false);
         openFileExplorer.setFocusPainted(false);
         openFileExplorer.setText("Choose File");
-        openFileExplorer.setFont(fontElements);
+        openFileExplorer.setFont(font.fontElements());
 
         chosenFileDisplay.setPreferredSize(new Dimension(150, 50));
+        chosenFileDisplay.setFont(font.fontElements());
+        chosenFileDisplay.setForeground(new Color(255,255,255));
 
         openFileExplorer.addActionListener(new ActionListener() {
             @Override
@@ -146,7 +135,7 @@ public class FrontAddCVFile {
                     File chosenFile = addCVFile.getSelectedFile();
 
                     //chosenFileDisplay.setText(chosenFile.getName());
-                    chosenFileDisplay.setText(chosenFile.getAbsolutePath());
+                    chosenFileDisplay.setText(chosenFile.getName());
                 }
             }
         });
@@ -157,7 +146,7 @@ public class FrontAddCVFile {
         submitButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         submitButton.setContentAreaFilled(false);
         submitButton.setFocusPainted(false);
-        submitButton.setFont(fontElements);
+        submitButton.setFont(font.fontElements());
         submitButton.addActionListener(e -> {
             addCVPanel.removeAll();
             addCVPanel.add(FrontAddCVFile.addCVFile());
@@ -171,7 +160,7 @@ public class FrontAddCVFile {
         backButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         backButton.setContentAreaFilled(false);
         backButton.setFocusPainted(false);
-        backButton.setFont(fontElements);
+        backButton.setFont(font.fontElements());
         backButton.addActionListener(e -> {
             addCVPanel.removeAll();
             addCVPanel.add(FrontMainMenu.mainMenuPanel());

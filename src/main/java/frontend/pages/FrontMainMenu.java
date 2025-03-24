@@ -1,29 +1,14 @@
 package frontend.pages;
 
+import frontend.FrontFont;
 import frontend.FrontQuit;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.io.BufferedInputStream;
-import java.io.FileInputStream;
-import java.io.InputStream;
 
 public class FrontMainMenu {
     public static JPanel mainMenuPanel(){
-        Font fontTitle = null;
-        Font fontElements = null;
-
-        try {
-            InputStream myStream = new BufferedInputStream(new FileInputStream("Resources/Montserrat-Light.ttf"));
-            Font font = Font.createFont(Font.TRUETYPE_FONT, myStream);
-            fontTitle = font.deriveFont(Font.PLAIN, 35);
-            fontElements = font.deriveFont(Font.PLAIN, 20);
-        } catch (Exception e) {
-            fontTitle = (new Font("Roboto", Font.PLAIN, 30));
-            fontElements = (new Font("Roboto", Font.PLAIN, 15));
-        }
-
         // Declaring instances of components
         JPanel mainPanel = new JPanel();
         JPanel elementsPanel = new JPanel(){
@@ -71,6 +56,8 @@ public class FrontMainMenu {
             }
         };
 
+        FrontFont font = new FrontFont();
+
         // Defining attributes to mainPanel
         mainPanel.setBackground(new Color(30,30,30));
         mainPanel.setOpaque(true);
@@ -83,7 +70,7 @@ public class FrontMainMenu {
         pageTitle.setText("Main Menu");
         pageTitle.setVisible(true);
         pageTitle.setAlignmentX(Component.CENTER_ALIGNMENT);
-        pageTitle.setFont(fontTitle);
+        pageTitle.setFont(font.fontTitle());
         pageTitle.setForeground(new Color(255,255,255));
 
         // Defining attributes to addCVButton
@@ -91,7 +78,7 @@ public class FrontMainMenu {
         addCVButton.setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
         addCVButton.setForeground(new Color(255, 255, 255));
         addCVButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        addCVButton.setFont(fontElements);
+        addCVButton.setFont(font.fontElements());
         addCVButton.setContentAreaFilled(false);
         addCVButton.setFocusPainted(false);
 
@@ -107,7 +94,7 @@ public class FrontMainMenu {
         cvRankedListButton.setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
         cvRankedListButton.setForeground(new Color(255, 255, 255));
         cvRankedListButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        cvRankedListButton.setFont(fontElements);
+        cvRankedListButton.setFont(font.fontElements());
         cvRankedListButton.setContentAreaFilled(false);
         cvRankedListButton.setFocusPainted(false);
 
@@ -123,7 +110,7 @@ public class FrontMainMenu {
         quitButton.setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
         quitButton.setForeground(new Color(255, 255, 255));
         quitButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        quitButton.setFont(fontElements);
+        quitButton.setFont(font.fontElements());
         quitButton.setContentAreaFilled(false);
         quitButton.setFocusPainted(false);
 

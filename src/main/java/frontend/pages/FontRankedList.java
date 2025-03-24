@@ -1,29 +1,13 @@
 package frontend.pages;
 
+import frontend.FrontFont;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.io.BufferedInputStream;
-import java.io.FileInputStream;
-import java.io.InputStream;
 
 public class FontRankedList {
     public static JPanel rankedList(){
-
-        // Importing the font
-        Font fontTitle = null;
-        Font fontElements = null;
-
-        try {
-            InputStream myStream = new BufferedInputStream(new FileInputStream("Resources/Montserrat-Light.ttf"));
-            Font font = Font.createFont(Font.TRUETYPE_FONT, myStream);
-            fontTitle = font.deriveFont(Font.PLAIN, 30);
-            fontElements = font.deriveFont(Font.PLAIN, 15);
-        } catch (Exception e) {
-            fontTitle = (new Font("Roboto", Font.PLAIN, 30));
-            fontElements = (new Font("Roboto", Font.PLAIN, 15));
-        }
-
         // Creating instances of components
         JPanel rankedList = new JPanel();
         JLabel pageTitle = new JLabel();
@@ -34,7 +18,18 @@ public class FontRankedList {
                 Graphics2D graphics2D = (Graphics2D) g;
                 graphics2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
                 graphics2D.fillRoundRect(0,0, getWidth(), getHeight(), 40,40);
+            }
+        };
 
+        JButton clearList = new JButton(){
+            @Override
+            protected void paintComponent(Graphics g){
+                Graphics2D graphics2D = (Graphics2D) g;
+                graphics2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                graphics2D.setColor(new Color(85,85,85));
+                graphics2D.fillRoundRect(0,0, getWidth(), getHeight(), 20,20);
+
+                super.paintComponent(g);
             }
         };
 
@@ -49,6 +44,8 @@ public class FontRankedList {
                 super.paintComponent(g);
             }
         };
+
+        FrontFont font = new FrontFont();
 
         // Defining attributes for addCVPanel
         rankedList.setBackground(new Color(30,30,30));
@@ -65,7 +62,7 @@ public class FontRankedList {
         pageTitle.setVisible(true);
         pageTitle.setAlignmentX(Component.CENTER_ALIGNMENT);
         pageTitle.setForeground(new Color(255,255,255));
-        pageTitle.setFont(fontTitle);
+        pageTitle.setFont(font.fontTitle());
 
         String[] columns = {"Code", "Name", "High", "Low", "Close", "Volume", "Change","Change %"};
 
@@ -115,6 +112,21 @@ public class FontRankedList {
         rankedListTable.setBackground(new Color(51,51,51));
         rankedListTable.setForeground(new Color(255,255,255));
 
+        // Defining attributes for clearList
+        clearList.setText("Clear List");
+        clearList.setBorder(BorderFactory.createEmptyBorder(15,15,15,15));
+        clearList.setForeground(new Color(255, 255, 255));
+        clearList.setAlignmentX(Component.CENTER_ALIGNMENT);
+        clearList.setContentAreaFilled(false);
+        clearList.setFocusPainted(false);
+        clearList.setFont(font.fontElements());
+        clearList.addActionListener(e -> {
+            rankedList.removeAll();
+            rankedList.add(FontRankedList.rankedList());
+            rankedList.revalidate();
+            rankedList.repaint();
+        });
+
         // Defining attributes for backButton
         backButton.setText("Previous");
         backButton.setBorder(BorderFactory.createEmptyBorder(15,15,15,15));
@@ -122,21 +134,19 @@ public class FontRankedList {
         backButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         backButton.setContentAreaFilled(false);
         backButton.setFocusPainted(false);
-        backButton.setFont(fontElements);
+        backButton.setFont(font.fontElements());
         backButton.addActionListener(e -> {
             rankedList.removeAll();
             rankedList.add(FrontMainMenu.mainMenuPanel());
             rankedList.revalidate();
             rankedList.repaint();
-
         });
-
 
         elementsPanel.add(pageTitle);
         elementsPanel.add(Box.createVerticalStrut(35));
         elementsPanel.add(rankedListTable);
         elementsPanel.add(Box.createVerticalStrut(25));
-        //elementsPanel.add(openFileExplorer);
+        elementsPanel.add(clearList);
         elementsPanel.add(Box.createVerticalStrut(25));
         elementsPanel.add(backButton);
         rankedList.add(elementsPanel);
