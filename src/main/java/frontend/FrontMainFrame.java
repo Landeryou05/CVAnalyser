@@ -6,9 +6,8 @@ import javax.swing.*;
 import java.awt.*;
 
 public class FrontMainFrame {
-    public static void mainFrame(){
+    public static JFrame mainFrame(){
         JFrame frame = new JFrame();
-        FrontMainMenu mainMenu = new FrontMainMenu();
 
         frame.setTitle("CV Analyser | Main Menu");
         Image favicon = Toolkit.getDefaultToolkit().getImage("Resources/Logo.jpg");
@@ -16,10 +15,12 @@ public class FrontMainFrame {
         frame.setSize(450, 550);
         frame.setResizable(false);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        frame.setLocationRelativeTo(null);
 
-
-        frame.add(mainMenu.mainMenuPanel());
+        frame.add(FrontMainMenu.mainMenuPanel());
 
         frame.setVisible(true);
+
+        return frame;
     }
 }

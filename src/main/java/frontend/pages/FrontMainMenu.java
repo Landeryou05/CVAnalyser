@@ -6,8 +6,12 @@ import frontend.FrontQuit;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class FrontMainMenu {
+    private static JFrame mainFrame;
+
     public static JPanel mainMenuPanel(){
         // Declaring instances of components
         JPanel mainPanel = new JPanel();
@@ -114,7 +118,9 @@ public class FrontMainMenu {
         quitButton.setContentAreaFilled(false);
         quitButton.setFocusPainted(false);
 
-        quitButton.addActionListener(e -> FrontQuit.quitProgram());
+        quitButton.addActionListener(e -> {
+            FrontQuit.quitConfirm(mainFrame);
+        });
 
         // Adding buttons to button container
         elementsPanel.add(pageTitle);
