@@ -1,11 +1,16 @@
 package frontend;
 
+import frontend.pages.FontRankedList;
+import frontend.pages.FrontAddCVFile;
 import frontend.pages.FrontMainMenu;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class FrontMainFrame {
+    private static CardLayout cardLayout;
+    private static JPanel cardPanel;
+
     public static JFrame mainFrame(){
         JFrame frame = new JFrame();
 
@@ -13,10 +18,19 @@ public class FrontMainFrame {
         Image favicon = Toolkit.getDefaultToolkit().getImage("Resources/Logo.jpg");
         frame.setIconImage(favicon);
         frame.setSize(450, 550);
-        frame.setResizable(false);
+        frame.setResizable(true);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
-        frame.add(FrontMainMenu.mainMenuPanel());
+        frame.setVisible(true);
+
+        cardLayout = new CardLayout();
+        cardPanel = new JPanel(cardLayout);
+
+        cardPanel.add(FrontMainMenu.mainMenuPanel(cardPanel, cardLayout), "MainMenu");
+        cardPanel.add(FrontAddCVFile.addCVFile(cardPanel, cardLayout), "AddCVFile");
+        cardPanel.add(FontRankedList.rankedList(cardPanel, cardLayout), "RankedList");
+
+        frame.add(cardPanel);
         frame.setVisible(true);
 
         return frame;

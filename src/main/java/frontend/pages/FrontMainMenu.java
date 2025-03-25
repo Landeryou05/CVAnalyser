@@ -10,9 +10,10 @@ import java.awt.*;
 public class FrontMainMenu {
     private static JFrame mainFrame;
 
-    public static JPanel mainMenuPanel(){
+    public static JPanel mainMenuPanel(JPanel cardPanel, CardLayout cardLayout){
         // Declaring instances of components
         JPanel mainPanel = new JPanel();
+
         JPanel elementsPanel = new JPanel(){
             @Override
             protected void paintComponent(Graphics g){
@@ -67,6 +68,7 @@ public class FrontMainMenu {
         // Defining attributes to elementsPanel
         elementsPanel.setOpaque(false);
         elementsPanel.setBorder(new EmptyBorder(30,30,30,30));
+        elementsPanel.setLayout(new BoxLayout(elementsPanel, BoxLayout.Y_AXIS));
 
         // Defining attributes to pageTitle
         pageTitle.setText("Main Menu");
@@ -85,10 +87,7 @@ public class FrontMainMenu {
         addCVButton.setFocusPainted(false);
 
         addCVButton.addActionListener(e -> {
-            mainPanel.removeAll();
-            mainPanel.add(FrontAddCVFile.addCVFile());
-            mainPanel.revalidate();
-            mainPanel.repaint();
+            cardLayout.show(cardPanel, "AddCVFile");
         });
 
         // Defining attributes to cvRankedList
@@ -101,10 +100,7 @@ public class FrontMainMenu {
         cvRankedListButton.setFocusPainted(false);
 
         cvRankedListButton.addActionListener(e -> {
-            mainPanel.removeAll();
-            mainPanel.add(FontRankedList.rankedList());
-            mainPanel.revalidate();
-            mainPanel.repaint();
+            cardLayout.show(cardPanel, "RankedList");
         });
 
         // Defining attributes to quitButton
@@ -128,8 +124,6 @@ public class FrontMainMenu {
         elementsPanel.add(cvRankedListButton);
         elementsPanel.add(Box.createVerticalStrut(35));
         elementsPanel.add(quitButton);
-
-        elementsPanel.setLayout(new BoxLayout(elementsPanel, BoxLayout.Y_AXIS));
 
         mainPanel.setLayout(new GridBagLayout());
         mainPanel.add(elementsPanel);

@@ -7,7 +7,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
 public class FontRankedList {
-    public static JPanel rankedList(){
+    public static JPanel rankedList(JPanel cardPanel, CardLayout cardLayout){
         // Creating instances of components
         JPanel rankedList = new JPanel();
         JLabel pageTitle = new JLabel();
@@ -160,10 +160,7 @@ public class FontRankedList {
         backButton.setFocusPainted(false);
         backButton.setFont(font.fontElements());
         backButton.addActionListener(e -> {
-            rankedList.removeAll();
-            rankedList.add(FrontMainMenu.mainMenuPanel());
-            rankedList.revalidate();
-            rankedList.repaint();
+            cardLayout.show(cardPanel, "MainMenu");
         });
 
         elementsPanel.add(pageTitle);
@@ -175,6 +172,8 @@ public class FontRankedList {
         elementsPanel.add(backButton);
 
         rankedList.add(elementsPanel);
+
+        rankedList.setLayout(new GridBagLayout());
 
         return rankedList;
     }

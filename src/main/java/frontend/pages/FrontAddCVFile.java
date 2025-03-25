@@ -11,10 +11,11 @@ import java.awt.event.ActionListener;
 import java.io.File;
 
 public class FrontAddCVFile {
-    public static JPanel addCVFile(){
+    public static JPanel addCVFile(JPanel cardPanel, CardLayout cardLayout){
 
         // Creating instances of components
         JPanel addCVPanel = new JPanel();
+        addCVPanel.setBounds(150,150,150,150);
         JPanel selectedFilePanel = new JPanel(){
             @Override
             protected void paintComponent(Graphics g){
@@ -85,7 +86,6 @@ public class FrontAddCVFile {
         elementsPanel.setOpaque(false);
         elementsPanel.setBorder(new EmptyBorder(30,30,30,30));
         elementsPanel.setLayout(new BoxLayout(elementsPanel, BoxLayout.Y_AXIS));
-        elementsPanel.setBackground(new Color(55,55,55));
 
         // Defining selectedFilePanel
         selectedFilePanel.setVisible(true);
@@ -146,9 +146,7 @@ public class FrontAddCVFile {
         submitButton.setFocusPainted(false);
         submitButton.setFont(font.fontElements());
         submitButton.addActionListener(e -> {
-            chosenFileDisplay.setText("(Selected File)");
-            addCVPanel.revalidate();
-            addCVPanel.repaint();
+            cardLayout.show(cardPanel, "addCVFile");
         });
 
         backButton.setText("Previous");
@@ -159,10 +157,7 @@ public class FrontAddCVFile {
         backButton.setFocusPainted(false);
         backButton.setFont(font.fontElements());
         backButton.addActionListener(e -> {
-            addCVPanel.removeAll();
-            addCVPanel.add(FrontMainMenu.mainMenuPanel());
-            addCVPanel.revalidate();
-            addCVPanel.repaint();
+            cardLayout.show(cardPanel, "MainMenu");
         });
 
         selectedFilePanel.add(openFileExplorer);
@@ -178,6 +173,8 @@ public class FrontAddCVFile {
         elementsPanel.add(Box.createVerticalStrut(25));
         elementsPanel.add(backButton);
         addCVPanel.add(elementsPanel);
+
+        addCVPanel.setLayout(new GridBagLayout());
 
         return addCVPanel;
     }
