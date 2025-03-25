@@ -147,8 +147,6 @@ public class FontRankedList {
         clearList.setFocusPainted(false);
         clearList.setFont(font.fontElements());
         clearList.addActionListener(e -> {
-            rankedList.removeAll();
-            rankedList.add(FontRankedList.rankedList());
             rankedList.revalidate();
             rankedList.repaint();
         });

@@ -146,8 +146,7 @@ public class FrontAddCVFile {
         submitButton.setFocusPainted(false);
         submitButton.setFont(font.fontElements());
         submitButton.addActionListener(e -> {
-            addCVPanel.removeAll();
-            addCVPanel.add(FrontAddCVFile.addCVFile());
+            chosenFileDisplay.setText("(Selected File)");
             addCVPanel.revalidate();
             addCVPanel.repaint();
         });
