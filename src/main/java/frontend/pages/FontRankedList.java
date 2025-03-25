@@ -121,20 +121,22 @@ public class FontRankedList {
                 {"MJP", "Morgan Stanley Dean Witter & Co.", 24.97, 24.97, 24.97, 1000, -0.04,-0.16},
         };
 
+
+        // Defining attributes for rankedListTable
         JTable rankedListTable = new JTable(data, columns);
-        JScrollPane rankedListTableScroll = new JScrollPane(rankedListTable);
-        rankedListTableScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-        rankedListTable.setPreferredSize(new Dimension(20, 20));
 
-        rankedListTable.setPreferredSize(new Dimension(300, 95));
+        // Defining attributes for rankedListTable
+        JScrollPane rankedListTableScrollPane = new JScrollPane(rankedListTable);
+
+        // Defining attributes for rankedListTableScrollPane
+        rankedListTableScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+
+        // Defining attributes for rankedListTable
+        rankedListTable.setPreferredScrollableViewportSize(new Dimension(320,120));
+        rankedListTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         rankedListTable.setDefaultEditor(Object.class, null);
-
         rankedListTable.setBackground(new Color(51,51,51));
         rankedListTable.setForeground(new Color(255,255,255));
-
-        // FIX SCROLL BAR
-        rankedListTable.setAutoResizeMode(rankedListTable.AUTO_RESIZE_ALL_COLUMNS);
-
 
         // Defining attributes for clearList
         clearList.setText("Clear List");
@@ -168,8 +170,7 @@ public class FontRankedList {
 
         elementsPanel.add(pageTitle);
         elementsPanel.add(Box.createVerticalStrut(35));
-        elementsPanel.add(rankedListTable);
-        elementsPanel.add(rankedListTableScroll);
+        elementsPanel.add(rankedListTableScrollPane);
         elementsPanel.add(Box.createVerticalStrut(25));
         elementsPanel.add(clearList);
         elementsPanel.add(Box.createVerticalStrut(25));
