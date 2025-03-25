@@ -12,7 +12,6 @@ import java.io.File;
 
 public class FrontAddCVFile {
     public static JPanel addCVFile(JPanel cardPanel, CardLayout cardLayout){
-
         // Creating instances of components
         JPanel addCVPanel = new JPanel();
         addCVPanel.setBounds(150,150,150,150);
@@ -26,11 +25,10 @@ public class FrontAddCVFile {
                 graphics2D.fillRoundRect(0,0, getWidth(), getHeight(), 20,20);
             }
         };
-
         FrontFont font = new FrontFont();
         JLabel pageTitle = new JLabel();
         JLabel chosenFileDisplay = new JLabel();
-        chosenFileDisplay.setText("(Selected File)");
+        chosenFileDisplay.setText("(Select a File)");
         JButton openFileExplorer = new JButton(){
             @Override
             protected void paintComponent(Graphics g){
@@ -41,7 +39,6 @@ public class FrontAddCVFile {
                 super.paintComponent(g);
             }
         };
-
         JPanel elementsPanel = new JPanel(){
             @Override
             protected void paintComponent(Graphics g){
@@ -51,9 +48,7 @@ public class FrontAddCVFile {
                 graphics2D.fillRoundRect(0,0, getWidth(), getHeight(), 40,40);
             }
         };
-
         JComboBox fileTypeSelection = new JComboBox();
-
         JButton submitButton = new JButton(){
             @Override
             protected void paintComponent(Graphics g){
@@ -65,7 +60,6 @@ public class FrontAddCVFile {
                 super.paintComponent(g);
             }
         };
-
         JButton backButton = new JButton(){
             @Override
             protected void paintComponent(Graphics g){
@@ -81,6 +75,7 @@ public class FrontAddCVFile {
         // Defining attributes for addCVPanel
         addCVPanel.setBackground(new Color(30,30,30));
         addCVPanel.setOpaque(true);
+        addCVPanel.setLayout(new GridBagLayout());
 
         // Defining attributes for elementsPanel
         elementsPanel.setOpaque(false);
@@ -109,7 +104,7 @@ public class FrontAddCVFile {
         fileTypeSelection.setFont(font.fontElements());
 
         // Defining attributes for openFileExplorer
-        openFileExplorer.setBorder(BorderFactory.createEmptyBorder(16,25,15,0));
+        openFileExplorer.setBorder(BorderFactory.createEmptyBorder(16,25,15,15));
         openFileExplorer.setForeground(new Color(255, 255, 255));
         openFileExplorer.setAlignmentX(Component.CENTER_ALIGNMENT);
         openFileExplorer.setContentAreaFilled(false);
@@ -120,7 +115,7 @@ public class FrontAddCVFile {
         chosenFileDisplay.setPreferredSize(new Dimension(150, 50));
         chosenFileDisplay.setFont(font.fontElements());
         chosenFileDisplay.setForeground(new Color(255,255,255));
-        chosenFileDisplay.setBorder(BorderFactory.createEmptyBorder(15,25,15,0));
+        chosenFileDisplay.setBorder(BorderFactory.createEmptyBorder(15,15,15,0));
 
         openFileExplorer.addActionListener(new ActionListener() {
             @Override
@@ -139,14 +134,14 @@ public class FrontAddCVFile {
         });
 
         submitButton.setText("Submit CV");
-        submitButton.setBorder(BorderFactory.createEmptyBorder(15,15,15,15));
+        submitButton.setBorder(BorderFactory.createEmptyBorder(15, 15,15,15));
         submitButton.setForeground(new Color(255, 255, 255));
         submitButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         submitButton.setContentAreaFilled(false);
         submitButton.setFocusPainted(false);
         submitButton.setFont(font.fontElements());
         submitButton.addActionListener(e -> {
-            cardLayout.show(cardPanel, "addCVFile");
+            chosenFileDisplay.setText("(Select a File)");
         });
 
         backButton.setText("Previous");
@@ -172,9 +167,8 @@ public class FrontAddCVFile {
         elementsPanel.add(submitButton);
         elementsPanel.add(Box.createVerticalStrut(25));
         elementsPanel.add(backButton);
-        addCVPanel.add(elementsPanel);
 
-        addCVPanel.setLayout(new GridBagLayout());
+        addCVPanel.add(elementsPanel);
 
         return addCVPanel;
     }

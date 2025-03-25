@@ -1,5 +1,4 @@
 import frontend.FrontMainFrame;
-import frontend.pages.FrontMainMenu;
 
 public class Main {
     public static void main(String[] args){

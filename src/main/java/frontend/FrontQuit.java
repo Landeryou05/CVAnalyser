@@ -1,7 +1,6 @@
 package frontend;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
@@ -10,7 +9,7 @@ public class FrontQuit {
         JDialog quitConfirmFrame = new JDialog(parentFrame, true);
         JPanel quitConfirmPanel = new JPanel();
         JLabel cautionLabel = new JLabel();
-        JButton yesButton = new JButton(){
+        JButton quitButton = new JButton(){
             @Override
             protected void paintComponent(Graphics g){
                 Graphics2D graphics2D = (Graphics2D) g;
@@ -21,7 +20,7 @@ public class FrontQuit {
             }
         };
 
-        JButton noButton = new JButton(){
+        JButton cancelButton = new JButton(){
             @Override
             protected void paintComponent(Graphics g){
                 Graphics2D graphics2D = (Graphics2D) g;
@@ -53,42 +52,42 @@ public class FrontQuit {
         quitConfirmPanel.setBackground(new Color(30,30,30));
         quitConfirmPanel.setBorder(new EmptyBorder(30,30,30,30));
 
-        cautionLabel.setText("Added CVs WILL be lost!");
+        cautionLabel.setText("Added CVs will be lost!");
         cautionLabel.setForeground(new Color(255,255,255));
         cautionLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         cautionLabel.setFont(new FrontFont().fontElements());
 
-        // Defining attributes for yesButton
-        yesButton.setText("Yes");
-        yesButton.setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
-        yesButton.setForeground(new Color(255, 255, 255));
-        yesButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        yesButton.setFont(new FrontFont().fontElements());
-        yesButton.setContentAreaFilled(false);
-        yesButton.setFocusPainted(false);
-        yesButton.setBackground(new Color(55,55,55));
-        yesButton.addActionListener(e -> {
+        // Defining attributes for quitButton
+        quitButton.setText("Quit");
+        quitButton.setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
+        quitButton.setForeground(new Color(255, 255, 255));
+        quitButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        quitButton.setFont(new FrontFont().fontElements());
+        quitButton.setContentAreaFilled(false);
+        quitButton.setFocusPainted(false);
+        quitButton.setBackground(new Color(55,55,55));
+        quitButton.addActionListener(e -> {
             quitProgram();
         });
 
-        // Defining attributes for noButton
-        noButton.setText("No");
-        noButton.setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
-        noButton.setForeground(new Color(255, 255, 255));
-        noButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        noButton.setFont(new FrontFont().fontElements());
-        noButton.setContentAreaFilled(false);
-        noButton.setFocusPainted(false);
-        noButton.setBackground(new Color(55,55,55));
-        noButton.addActionListener(e -> {
+        // Defining attributes for cancelButton
+        cancelButton.setText("Cancel");
+        cancelButton.setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
+        cancelButton.setForeground(new Color(255, 255, 255));
+        cancelButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        cancelButton.setFont(new FrontFont().fontElements());
+        cancelButton.setContentAreaFilled(false);
+        cancelButton.setFocusPainted(false);
+        cancelButton.setBackground(new Color(55,55,55));
+        cancelButton.addActionListener(e -> {
             quitConfirmFrame.dispose();
         });
 
         buttons.setOpaque(false);
         buttons.setBorder(BorderFactory.createEmptyBorder(15,0,15,0));
-        buttons.add(yesButton);
+        buttons.add(quitButton);
         buttons.add(Box.createHorizontalStrut(15));
-        buttons.add(noButton);
+        buttons.add(cancelButton);
 
         quitConfirmPanel.add(cautionLabel);
         quitConfirmPanel.add(Box.createVerticalStrut(30));

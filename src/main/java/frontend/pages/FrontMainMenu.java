@@ -13,7 +13,6 @@ public class FrontMainMenu {
     public static JPanel mainMenuPanel(JPanel cardPanel, CardLayout cardLayout){
         // Declaring instances of components
         JPanel mainPanel = new JPanel();
-
         JPanel elementsPanel = new JPanel(){
             @Override
             protected void paintComponent(Graphics g){
@@ -23,9 +22,7 @@ public class FrontMainMenu {
                 graphics2D.fillRoundRect(0,0, getWidth(), getHeight(), 40,40);
             }
         };
-
         JLabel pageTitle = new JLabel();
-
         JButton addCVButton = new JButton(){
             @Override
             protected void paintComponent(Graphics g){
@@ -36,7 +33,6 @@ public class FrontMainMenu {
                 super.paintComponent(g);
             }
         };
-
         JButton cvRankedListButton = new JButton(){
             @Override
             protected void paintComponent(Graphics g){
@@ -47,7 +43,6 @@ public class FrontMainMenu {
                 super.paintComponent(g);
             }
         };
-
         JButton quitButton = new JButton(){
             @Override
             protected void paintComponent(Graphics g){
@@ -58,12 +53,13 @@ public class FrontMainMenu {
                 super.paintComponent(g);
             }
         };
-
         FrontFont font = new FrontFont();
 
         // Defining attributes to mainPanel
         mainPanel.setBackground(new Color(30,30,30));
         mainPanel.setOpaque(true);
+        mainPanel.setVisible(true);
+        mainPanel.setLayout(new GridBagLayout());
 
         // Defining attributes to elementsPanel
         elementsPanel.setOpaque(false);
@@ -125,10 +121,7 @@ public class FrontMainMenu {
         elementsPanel.add(Box.createVerticalStrut(35));
         elementsPanel.add(quitButton);
 
-        mainPanel.setLayout(new GridBagLayout());
         mainPanel.add(elementsPanel);
-
-        mainPanel.setVisible(true);
 
         return mainPanel;
     }

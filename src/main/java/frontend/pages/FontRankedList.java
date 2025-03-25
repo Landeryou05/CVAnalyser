@@ -4,6 +4,7 @@ import frontend.FrontFont;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.JTableHeader;
 import java.awt.*;
 
 public class FontRankedList {
@@ -20,7 +21,6 @@ public class FontRankedList {
                 graphics2D.fillRoundRect(0,0, getWidth(), getHeight(), 40,40);
             }
         };
-
         JButton clearList = new JButton(){
             @Override
             protected void paintComponent(Graphics g){
@@ -32,7 +32,6 @@ public class FontRankedList {
                 super.paintComponent(g);
             }
         };
-
         JButton backButton = new JButton(){
             @Override
             protected void paintComponent(Graphics g){
@@ -44,12 +43,12 @@ public class FontRankedList {
                 super.paintComponent(g);
             }
         };
-
         FrontFont font = new FrontFont();
 
         // Defining attributes for addCVPanel
         rankedList.setBackground(new Color(30,30,30));
         rankedList.setOpaque(true);
+        rankedList.setLayout(new GridBagLayout());
 
         // Defining attributes for elementsPanel
         elementsPanel.setOpaque(false);
@@ -67,7 +66,6 @@ public class FontRankedList {
         String[] columns = {"Code", "Name", "High", "Low", "Close", "Volume", "Change","Change %"};
 
         Object[][] data = {
-                {"Code", "Name", "High", "Low", "Close", "Volume", "Change","Change %"},
                 {"MBF", "CITYGROUP", 10.16, 10.16, 10.16, 200, 0.08,0.79},
                 {"MBL", "BANK OF AMERICA", 12.66, 12.66, 12.66, 6600, 0.13,1.04},
                 {"MJP", "Morgan Stanley Dean Witter & Co.", 24.97, 24.97, 24.97, 1000, -0.04,-0.16},
@@ -121,22 +119,25 @@ public class FontRankedList {
                 {"MJP", "Morgan Stanley Dean Witter & Co.", 24.97, 24.97, 24.97, 1000, -0.04,-0.16},
         };
 
-
         // Defining attributes for rankedListTable
         JTable rankedListTable = new JTable(data, columns);
+        rankedListTable.setFont(font.fontElements());
+        rankedListTable.setPreferredScrollableViewportSize(new Dimension(320,143));
+        rankedListTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        rankedListTable.setDefaultEditor(Object.class, null);
+        rankedListTable.setBackground(new Color(51,51,51));
+        rankedListTable.setForeground(new Color(255,255,255));
+
+        // Defining attributes for rankedListTableHeader
+        JTableHeader rankedListTableHeader = rankedListTable.getTableHeader();
+        rankedListTableHeader.setFont(font.fontElements());
+        rankedListTableHeader.setReorderingAllowed(false);
 
         // Defining attributes for rankedListTable
         JScrollPane rankedListTableScrollPane = new JScrollPane(rankedListTable);
 
         // Defining attributes for rankedListTableScrollPane
         rankedListTableScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-
-        // Defining attributes for rankedListTable
-        rankedListTable.setPreferredScrollableViewportSize(new Dimension(320,120));
-        rankedListTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-        rankedListTable.setDefaultEditor(Object.class, null);
-        rankedListTable.setBackground(new Color(51,51,51));
-        rankedListTable.setForeground(new Color(255,255,255));
 
         // Defining attributes for clearList
         clearList.setText("Clear List");
@@ -172,8 +173,6 @@ public class FontRankedList {
         elementsPanel.add(backButton);
 
         rankedList.add(elementsPanel);
-
-        rankedList.setLayout(new GridBagLayout());
 
         return rankedList;
     }
