@@ -5,7 +5,6 @@ import java.util.Properties;
 
 import edu.stanford.nlp.pipeline.*;
 
-
 public class BackCV {
     private String cvFileType = null;
     private String cvFile = null;

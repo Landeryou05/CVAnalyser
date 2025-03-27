@@ -15,7 +15,6 @@
     </properties>
 
     <dependencies>
-        <!-- Stanford CoreNLP -->
         <dependency>
             <groupId>edu.stanford.nlp</groupId>
             <artifactId>stanford-corenlp</artifactId>
