@@ -12,11 +12,13 @@ public class BackCV {
     private Boolean cvSubmit = false;
     private String cvText = CVText();
 
-    ArrayList<String> extractedNameArrayList = new ArrayList<>();
-    ArrayList<String> extractedOrganisationsArrayList = new ArrayList<>();
+    private ArrayList<String> collectedCandidateArrayList = new ArrayList<>();
 
-    ArrayList<String> cvKeywordsArrayList = new ArrayList<>();
-    ArrayList<String> extractedKeywordsArrayList = new ArrayList<>();
+    private ArrayList<String> extractedNameArrayList = new ArrayList<>();
+    private ArrayList<String> extractedOrganisationsArrayList = new ArrayList<>();
+
+    private ArrayList<String> cvKeywordsArrayList = new ArrayList<>();
+    private ArrayList<String> extractedKeywordsArrayList = new ArrayList<>();
 
     // Getters and Setters
     public ArrayList<String> getExtractedName(){
@@ -51,14 +53,26 @@ public class BackCV {
         extractedKeywordsArrayList.add(extractedKeywords);
     }
 
+    public ArrayList<String> getCollectedCandidateArrayList(){
+        return collectedCandidateArrayList;
+    }
+
+    public void setCollectedCandidateArrayList(String candidate){
+        collectedCandidateArrayList.add(candidate);
+    }
+
     // Methods
     public void CVAnalyserMain(){
-        CVTextAnalyserNLP();
-        CVTextAnalyserKeywords();
 
-        System.out.println(getExtractedName());
-        System.out.println(getExtractedOrganisations());
-        System.out.println(getExtractedKeywords());
+        BackCandidate candidate = new BackCandidate(null, getExtractedName().toString(), getExtractedKeywords().toString(), getExtractedOrganisations().toString());
+        System.out.println(candidate);
+
+//        CVTextAnalyserNLP();
+//        CVTextAnalyserKeywords();
+//
+//        System.out.println(getExtractedName());
+//        System.out.println(getExtractedOrganisations());
+//        System.out.println(getExtractedKeywords());
     }
 
     public void CVTextAnalyserNLP(){
