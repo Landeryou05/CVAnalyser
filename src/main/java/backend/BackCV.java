@@ -48,12 +48,11 @@ public class BackCV {
             if (organisation.entityType().equals("ORGANIZATION")) {
                 extractedOrganisations.add(organisation.text());
             }
-
-
-            System.out.println(extractedName);
-            System.out.println(extractedOrganisations);
-            System.out.println(extractedKeyWords);
         }
+
+        System.out.println(extractedName);
+        System.out.println(extractedOrganisations);
+        System.out.println(extractedKeyWords);
     }
 }
 
