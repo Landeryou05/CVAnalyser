@@ -5,8 +5,8 @@ import java.util.Properties;
 
 import edu.stanford.nlp.pipeline.*;
 
-public class BackCV {
 
+public class BackCV {
     private String cvFileType = null;
     private String cvFile = null;
     private Boolean cvSubmit = false;
