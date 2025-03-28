@@ -1,15 +1,26 @@
-**Description**
+CVAnalyser
+==========
 
-This is a project for software principles, where I need to create an application to allow a CV input and then display a ranked list based on the ranking of CV strength, which is evaluated with Stanford NLP usage. Although a UI
-wasn't needed as part of the requirements, I have implemented such.
+Git Cloning
+-----------
+To clone this repository, run the following command in your terminal:
 
-**Git Cloning**
+    git clone https://github.com/Landeryou05/CVAnalyser.git
 
-Clone this repository by using:
-- 'git clone https://github.com/Landeryou05/CVAnalyser.git'
+Dependencies
+------------
+This project uses **Stanford CoreNLP** for Natural Language Processing (NLP).  
+The required dependencies have been included in `pom.xml`.
 
-**Dependancies**
+To ensure all dependencies are correctly installed, run:
 
-For this application to work, StanfordCoreNLP needs to be installed at:
-- https://stanfordnlp.github.io/CoreNLP/
-This is because of the git individual push limit, where it is set to 100MB and LFS is not practical for this project.
+    mvn clean install
+
+Manually Installing CoreNLP (if needed)
+---------------------------------------
+If the above command does not work, you may need to manually install Stanford CoreNLP:
+
+1. Download CoreNLP from the official site:  
+   https://stanfordnlp.github.io/CoreNLP/
+2. Extract the `.zip` file and place it inside your project directory.
+3. Add the required `.jar` files to your environment.
