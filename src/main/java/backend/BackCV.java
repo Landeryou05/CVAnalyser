@@ -14,10 +14,10 @@ public class BackCV {
 
     private ArrayList<String> collectedCandidateArrayList = new ArrayList<>();
 
+    private ArrayList<String> cvKeywordsArrayList = new ArrayList<>();
+
     private ArrayList<String> extractedNameArrayList = new ArrayList<>();
     private ArrayList<String> extractedOrganisationsArrayList = new ArrayList<>();
-
-    private ArrayList<String> cvKeywordsArrayList = new ArrayList<>();
     private ArrayList<String> extractedKeywordsArrayList = new ArrayList<>();
 
     // Getters and Setters
@@ -53,26 +53,28 @@ public class BackCV {
         extractedKeywordsArrayList.add(extractedKeywords);
     }
 
-    public ArrayList<String> getCollectedCandidateArrayList(){
-        return collectedCandidateArrayList;
-    }
-
-    public void setCollectedCandidateArrayList(String candidate){
-        collectedCandidateArrayList.add(candidate);
-    }
-
     // Methods
     public void CVAnalyserMain(){
 
-        BackCandidate candidate = new BackCandidate(null, getExtractedName().toString(), getExtractedKeywords().toString(), getExtractedOrganisations().toString());
-        System.out.println(candidate);
+        //BackCandidate candidate = new BackCandidate(null, getExtractedName().toString(), getExtractedKeywords().toString(), getExtractedOrganisations().toString());
 
-//        CVTextAnalyserNLP();
-//        CVTextAnalyserKeywords();
-//
+//        BackCandidate candidate1 = new BackCandidate(1, "Matt", "python", "Apple");
+//        BackCandidate candidate2 = new BackCandidate(2, "James", "Java", "Microsoft");
+//        System.out.println(candidate1.getCVCandidateRank());
+//        System.out.println(candidate2.getCVCandidateRank());
+
+
+
+        CVTextAnalyserKeywords();
+        CVTextAnalyserNLP();
+
+//        System.out.println(getCVKeywords().size());
+//        System.out.println(getExtractedOrganisations().size());
+
+
+//        System.out.println(getExtractedKeywords());
 //        System.out.println(getExtractedName());
 //        System.out.println(getExtractedOrganisations());
-//        System.out.println(getExtractedKeywords());
     }
 
     public void CVTextAnalyserNLP(){

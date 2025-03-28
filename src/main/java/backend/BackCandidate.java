@@ -4,13 +4,32 @@ import java.io.File;
 import java.util.ArrayList;
 
 public class BackCandidate{
-    private ArrayList<String> candidateArrayList = new ArrayList<>();
+    private Integer candidateRank;
+    private String candidateName;
+    private String candidateSkills;
+    private String candidateOrganisations;
+
+    public Integer getCVCandidateRank(){
+        return candidateRank;
+    }
+
+    public String getCVCandidateName(){
+        return candidateName;
+    }
+
+    public String getCVCandidateSkills(){
+        return candidateSkills;
+    }
+
+    public String getCVCandidateOrganisations(){
+        return candidateOrganisations;
+    }
 
     // Candidate Constructor
-    public BackCandidate(String cvCandidateRank, String cvCandidateName, String cvCandidateSkills, String cvCandidateOrganisations){
-        this.candidateArrayList.add(cvCandidateRank);
-        this.candidateArrayList.add(cvCandidateName);
-        this.candidateArrayList.add(cvCandidateSkills);
-        this.candidateArrayList.add(cvCandidateOrganisations);
+    public BackCandidate(Integer cvCandidateRank, String cvCandidateName, String cvCandidateSkills, String cvCandidateOrganisations){
+        this.candidateRank = cvCandidateRank;
+        this.candidateName = cvCandidateName;
+        this.candidateSkills = cvCandidateSkills;
+        this.candidateOrganisations = cvCandidateOrganisations;
     }
 }
