@@ -7,12 +7,8 @@ import edu.stanford.nlp.pipeline.*;
 
 public class BackCV {
     // Instance Variables
-    private String cvFileType = null;
-    private String cvFile = null;
-    private Boolean cvSubmit = false;
     private String cvText = CVText();
-
-    private ArrayList<String> collectedCandidateArrayList = new ArrayList<>();
+    private Integer cvScore = 0;
 
     private ArrayList<String> cvKeywordsArrayList = new ArrayList<>();
 
@@ -53,28 +49,23 @@ public class BackCV {
         extractedKeywordsArrayList.add(extractedKeywords);
     }
 
+    public Integer getCVScore(){
+        return cvScore;
+    }
+
+    public void setCVScore(Integer calculatedCVScore){
+        this.cvScore = calculatedCVScore;
+    }
+
     // Methods
     public void CVAnalyserMain(){
-
-        //BackCandidate candidate = new BackCandidate(null, getExtractedName().toString(), getExtractedKeywords().toString(), getExtractedOrganisations().toString());
-
-//        BackCandidate candidate1 = new BackCandidate(1, "Matt", "python", "Apple");
-//        BackCandidate candidate2 = new BackCandidate(2, "James", "Java", "Microsoft");
-//        System.out.println(candidate1.getCVCandidateRank());
-//        System.out.println(candidate2.getCVCandidateRank());
-
-
-
         CVTextAnalyserKeywords();
         CVTextAnalyserNLP();
 
-//        System.out.println(getCVKeywords().size());
-//        System.out.println(getExtractedOrganisations().size());
+        cvKeywordsScore();
+        cvNLPScore();
 
-
-//        System.out.println(getExtractedKeywords());
-//        System.out.println(getExtractedName());
-//        System.out.println(getExtractedOrganisations());
+        BackCandidate candidate = new BackCandidate(getCVScore(), getExtractedName().toString(), getExtractedKeywords().toString(), getExtractedOrganisations().toString());
     }
 
     public void CVTextAnalyserNLP(){
@@ -125,5 +116,12 @@ public class BackCV {
 
         return cvRawText;
     }
-}
 
+    public void cvKeywordsScore(){
+        setCVScore(getCVScore() + (getExtractedKeywords().size()));
+    }
+
+    public void cvNLPScore(){
+        setCVScore(getCVScore() + (getExtractedOrganisations().size()));
+    }
+}
