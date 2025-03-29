@@ -1,5 +1,7 @@
 package backend;
 
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Properties;
 
@@ -7,7 +9,7 @@ import edu.stanford.nlp.pipeline.*;
 
 public class BackCV {
     // Instance Variables
-    private String cvText = CVText();
+    private String cvText;
     private Integer cvScore = 0;
 
     private ArrayList<String> cvKeywordsArrayList = new ArrayList<>();
@@ -17,6 +19,14 @@ public class BackCV {
     private ArrayList<String> extractedKeywordsArrayList = new ArrayList<>();
 
     // Getters and Setters
+    public String getCVText(){
+        return cvText;
+    }
+
+    public void setCVText(){
+        this.cvText = "C://Users/lande/Documents/test.txt/";
+    }
+
     public ArrayList<String> getExtractedName(){
         return extractedNameArrayList;
     }
@@ -66,6 +76,8 @@ public class BackCV {
         cvNLPScore();
 
         BackCandidate candidate = new BackCandidate(getCVScore(), getExtractedName().toString(), getExtractedKeywords().toString(), getExtractedOrganisations().toString());
+
+        System.out.println(getCVScore());
     }
 
     public void CVTextAnalyserNLP(){
@@ -109,12 +121,19 @@ public class BackCV {
         }
     }
 
-    public String CVText(){
-        String cvRawText = "github data scientist Microsoft skilled in Python, machine learning, and NLP. "
-                + "Worked at XYZ Corp developing Java software models and programming improving data pipelines."
-                + "Proficient in TensorFlow, Matt Landeryou, and SQL.";
+    public String CVFileConvert(String cvFilePath){
+        if(cvFilePath.contains("txt") || cvFilePath.contains("pdf") || cvFilePath.contains("docx")){
+            try{
+                String cvFileContent = Files.readString(Paths.get(cvFilePath));
+                return cvFileContent;
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+        }else{
+            System.out.println("Wrong file type");
+        }
 
-        return cvRawText;
+        return null;
     }
 
     public void cvKeywordsScore(){

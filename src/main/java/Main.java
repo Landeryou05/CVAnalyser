@@ -1,15 +1,12 @@
 import backend.BackCV;
+import frontend.FrontMainFrame;
 
 public class Main {
     public static void main(String[] args){
-//        BackCVRanking CV = new BackCVRanking();
-//
-//        CV.cvNLPScore();
-//        CV.cvKeywordsScore();
-//        System.out.println(CV.getCVScore());
+        FrontMainFrame frame = new FrontMainFrame();
+        frame.mainFrame();
 
-        BackCV cv = new BackCV();
-
-        cv.CVAnalyserMain();
+//        BackCV cv = new BackCV();
+//        cv.CVAnalyserMain();
     }
 }
