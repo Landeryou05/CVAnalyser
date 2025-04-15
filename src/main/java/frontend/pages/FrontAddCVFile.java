@@ -1,6 +1,8 @@
 package frontend.pages;
 
 import backend.BackCV;
+import backend.BackCandidate;
+import backend.BackRankedList;
 import frontend.FrontFont;
 
 import javax.swing.*;
@@ -10,10 +12,33 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.ArrayList;
 
-public class FrontAddCVFile extends BackCV {
+public class FrontAddCVFile extends FrontRankedList {
 
-    //GET GETTERS AND SETTERS TO WORK
+    private ArrayList<BackCandidate> candidateList = new ArrayList<>();
+    private ArrayList<Integer> candidateScoreList = new ArrayList<>();
+
+    File chosenFile = null;
+
+    public ArrayList<BackCandidate> getcandidateList(){
+        return candidateList;
+    }
+
+    public void setcandidateList(BackCandidate candidate){
+        candidateList.add(candidate);
+    }
+
+    public File getChosenFile(){
+        return chosenFile;
+    }
+
+    public void setChosenFile(File userSelectedFile){
+        chosenFile = userSelectedFile;
+    }
+
+
+
     public static JPanel addCVFile(JPanel cardPanel, CardLayout cardLayout){
         // Creating instances of components
         JPanel addCVPanel = new JPanel();
@@ -120,6 +145,8 @@ public class FrontAddCVFile extends BackCV {
         chosenFileDisplay.setForeground(new Color(255,255,255));
         chosenFileDisplay.setBorder(BorderFactory.createEmptyBorder(15,15,15,0));
 
+        FrontAddCVFile frontAddCVFileInstance = new FrontAddCVFile();
+
         openFileExplorer.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -130,8 +157,8 @@ public class FrontAddCVFile extends BackCV {
                 addCVFile.addChoosableFileFilter(new FileNameExtensionFilter("Text File (.txt)", "txt"));
 
                 if(addCVFile.showOpenDialog(null) == JFileChooser.APPROVE_OPTION){
-                    File chosenFile = addCVFile.getSelectedFile();
-                    chosenFileDisplay.setText(chosenFile.getName());
+                    frontAddCVFileInstance.setChosenFile(addCVFile.getSelectedFile());
+                    chosenFileDisplay.setText(frontAddCVFileInstance.getChosenFile().getName());
 
                 }
             }
@@ -145,7 +172,12 @@ public class FrontAddCVFile extends BackCV {
         submitButton.setFocusPainted(false);
         submitButton.setFont(font.fontElements());
         submitButton.addActionListener(e -> {
+            BackCV cvAnalyser = new BackCV();
+            BackRankedList backRankedList = new BackRankedList();
+            FrontRankedList frontRankedList = new FrontRankedList();
+
             chosenFileDisplay.setText("(Select a File)");
+            frontAddCVFileInstance.setcandidateList(cvAnalyser.CVAnalyserMain(frontAddCVFileInstance.getChosenFile().toString()));
         });
 
         backButton.setText("Previous");
@@ -164,8 +196,6 @@ public class FrontAddCVFile extends BackCV {
 
         elementsPanel.add(pageTitle);
         elementsPanel.add(Box.createVerticalStrut(35));
-        //elementsPanel.add(fileTypeSelection);
-        //elementsPanel.add(Box.createVerticalStrut(25));
         elementsPanel.add(selectedFilePanel);
         elementsPanel.add(Box.createVerticalStrut(25));
         elementsPanel.add(submitButton);

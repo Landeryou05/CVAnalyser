@@ -1,6 +1,6 @@
 package frontend;
 
-import frontend.pages.FontRankedList;
+import frontend.pages.FrontRankedList;
 import frontend.pages.FrontAddCVFile;
 import frontend.pages.FrontMainMenu;
 
@@ -28,7 +28,7 @@ public class FrontMainFrame {
 
         cardPanel.add(FrontMainMenu.mainMenuPanel(cardPanel, cardLayout), "MainMenu");
         cardPanel.add(FrontAddCVFile.addCVFile(cardPanel, cardLayout), "AddCVFile");
-        cardPanel.add(FontRankedList.rankedList(cardPanel, cardLayout), "RankedList");
+        cardPanel.add(FrontRankedList.rankedList(cardPanel, cardLayout), "RankedList");
 
         frame.add(cardPanel);
         frame.setVisible(true);

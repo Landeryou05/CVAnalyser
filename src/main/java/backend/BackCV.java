@@ -12,6 +12,8 @@ public class BackCV {
     private String cvText;
     private Integer cvScore = 0;
 
+    private static ArrayList<BackCandidate> candidateArray = new ArrayList<>();
+
     private ArrayList<String> cvKeywordsArrayList = new ArrayList<>();
 
     private ArrayList<String> extractedNameArrayList = new ArrayList<>();
@@ -19,12 +21,12 @@ public class BackCV {
     private ArrayList<String> extractedKeywordsArrayList = new ArrayList<>();
 
     // Getters and Setters
-    public String getCVText(){
-        return cvText;
+    public ArrayList<BackCandidate> getCandidateArray(){
+        return candidateArray;
     }
 
-    public void setCVText(){
-        this.cvText = "C://Users/lande/Documents/test.txt/";
+    public String getCVText(){
+        return cvText;
     }
 
     public ArrayList<String> getExtractedName(){
@@ -68,7 +70,13 @@ public class BackCV {
     }
 
     // Methods
-    public void CVAnalyserMain(){
+    public BackCandidate CVAnalyserMain(String chosenFile){
+        try{
+            cvText = (Files.readString(Paths.get(chosenFile)));
+        }catch (Exception e){
+            System.out.println(e);
+        }
+
         CVTextAnalyserKeywords();
         CVTextAnalyserNLP();
 
@@ -77,15 +85,18 @@ public class BackCV {
 
         BackCandidate candidate = new BackCandidate(getCVScore(), getExtractedName().toString(), getExtractedKeywords().toString(), getExtractedOrganisations().toString());
 
-        System.out.println(getCVScore());
+        candidateArray.add(candidate);
+
+        return candidate;
     }
+
 
     public void CVTextAnalyserNLP(){
         Properties properties = new Properties();
         properties.setProperty("annotators", "tokenize,pos,lemma,ner");
         StanfordCoreNLP pipeLine = new StanfordCoreNLP(properties);
 
-        CoreDocument document = new CoreDocument(cvText);
+        CoreDocument document = new CoreDocument(getCVText());
         pipeLine.annotate(document);
 
         ArrayList<String> falsePositives = new ArrayList<>();

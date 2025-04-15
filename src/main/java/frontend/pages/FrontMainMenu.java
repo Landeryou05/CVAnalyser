@@ -1,5 +1,7 @@
 package frontend.pages;
 
+import backend.BackCV;
+import backend.BackRankedList;
 import frontend.FrontFont;
 import frontend.FrontQuit;
 
@@ -97,6 +99,10 @@ public class FrontMainMenu {
 
         cvRankedListButton.addActionListener(e -> {
             cardLayout.show(cardPanel, "RankedList");
+
+            FrontRankedList rankedListInstance = new FrontRankedList();
+//            rankedListInstance.candidateInfo();
+//            rankedListInstance.getRankedListArray()
         });
 
         // Defining attributes to quitButton
