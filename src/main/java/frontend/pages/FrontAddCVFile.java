@@ -2,7 +2,6 @@ package frontend.pages;
 
 import backend.BackCV;
 import backend.BackCandidate;
-import backend.BackRankedList;
 import frontend.FrontFont;
 
 import javax.swing.*;
@@ -17,8 +16,7 @@ import java.util.ArrayList;
 public class FrontAddCVFile {
 
     private ArrayList<BackCandidate> candidateList = new ArrayList<>();
-
-    File chosenFile = null;
+    private File chosenFile = null;
 
     public ArrayList<BackCandidate> getcandidateList(){
         return candidateList;
@@ -156,7 +154,6 @@ public class FrontAddCVFile {
                 if(addCVFile.showOpenDialog(null) == JFileChooser.APPROVE_OPTION){
                     frontAddCVFileInstance.setChosenFile(addCVFile.getSelectedFile());
                     chosenFileDisplay.setText(frontAddCVFileInstance.getChosenFile().getName());
-
                 }
             }
         });
@@ -175,10 +172,7 @@ public class FrontAddCVFile {
             chosenFileDisplay.setText("(Select a File)");
             frontAddCVFileInstance.setcandidateList(cvAnalyser.CVAnalyserMain(frontAddCVFileInstance.getChosenFile().toString()));
 
-            System.out.println(frontAddCVFileInstance.getcandidateList());
-
             rankedList.getRankedListArray().clear();
-
             for (BackCandidate candidate : frontAddCVFileInstance.getcandidateList()){
                 rankedList.setRankedListArray(candidate.getCandidateScore().toString(), candidate.getCandidateName(), candidate.getCandidateSkills(), candidate.getCandidateOrganisations());
             }

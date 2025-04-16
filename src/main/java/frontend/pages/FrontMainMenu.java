@@ -97,8 +97,6 @@ public class FrontMainMenu {
 
         cvRankedListButton.addActionListener(e -> {
             cardLayout.show(cardPanel, "RankedList");
-
-            FrontRankedList rankedListInstance = new FrontRankedList();
         });
 
         // Defining attributes to quitButton

@@ -1,7 +1,5 @@
 package frontend.pages;
 
-import backend.BackCV;
-import backend.BackCandidate;
 import frontend.FrontFont;
 
 import javax.swing.*;
@@ -15,55 +13,16 @@ import java.util.Arrays;
 public class FrontRankedList {
     private static ArrayList<Object[]> rankedListArray = new ArrayList<>();
 
-    private String candidateScore;
-    private String candidateName;
-    private String candidateSkills;
-    private String candidateOrganisations;
-
-    public String getCandidateScore(){
-        return candidateScore;
-    }
-
-    public String getCandidateName(){
-        return candidateName;
-    }
-
-    public String getCandidateSkills(){
-        return candidateSkills;
-    }
-
-    public String getCandidateOrganisations(){
-        return candidateOrganisations;
-    }
-
-    public void setCandidateScore(String setCandidateScore){
-        candidateScore = setCandidateScore;
-    }
-
-    public void setCandidateName(String setCandidateName){
-        candidateName = setCandidateName;
-    }
-
-    public void setCandidateSkills(String setCandidateSkills){
-        candidateSkills = setCandidateSkills;
-    }
-
-    public void setCandidateOrganisations(String setCandidateOrganisations){
-        candidateOrganisations = setCandidateOrganisations;
-    }
-
     public ArrayList<Object[]> getRankedListArray(){
         return rankedListArray;
     }
 
     public void setRankedListArray(String candidateScore, String candidateName, String candidateSkills, String candidateOrganisations){
-
         rankedListArray.add(new Object[]{candidateScore, candidateName, candidateSkills, candidateOrganisations});
     }
 
     public static JPanel rankedList(JPanel cardPanel, CardLayout cardLayout){
         // Creating instances of components
-        FrontRankedList rankedListInstance = new FrontRankedList();
         JPanel rankedListPanel = new JPanel();
         JLabel pageTitle = new JLabel();
         JPanel elementsPanel = new JPanel(){
@@ -128,30 +87,6 @@ public class FrontRankedList {
         pageTitle.setForeground(new Color(255,255,255));
         pageTitle.setFont(font.fontTitle());
 
-//        String[] columns = {"Rank", "Name", "Organisations", "keywords", "CV"};
-//
-//
-//
-//        ArrayList<String> candidateObjects = new ArrayList<>();
-//
-//        Object[][] data = {candidateObjects.toString()};
-//
-//        for (BackCandidate candidate : frontRankedList.getRankedListArray()){
-//            candidateObjects.add(frontRankedList.candidateName);
-//            candidateObjects.add(frontRankedList.candidateSkills);
-//            candidateObjects.add(frontRankedList.candidateOrganisations);
-//        }
-
-
-
-//        table.addColumn("Rank");
-//        table.addColumn("Name");
-//        table.addColumn("Organisations");
-//        table.addColumn("Keywords");
-//        table.addColumn("CV");
-//
-//        table.addRow(new Object[]{"321", 'f', "fsdfsd", "ggg", 'f'});
-
         // Defining attributes for rankedListTable
         DefaultTableModel table = new DefaultTableModel();
         JTable rankedListTable = new JTable(table);
@@ -195,12 +130,10 @@ public class FrontRankedList {
         refreshList.setFont(font.fontElements());
         refreshList.addActionListener(e -> {
             table.setRowCount(0);
-
             for (Object[] rowData : rankedListArray){
                 System.out.println(Arrays.toString(rowData));
                 table.addRow(rowData);
             }
-
         });
 
         // Defining attributes for backButton

@@ -1,7 +1,5 @@
 package backend;
 
-import java.util.Vector;
-
 public class BackCandidate {
     private Integer candidateScore;
     private String candidateName;

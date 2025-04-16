@@ -21,10 +21,6 @@ public class BackCV {
     private ArrayList<String> extractedKeywordsArrayList = new ArrayList<>();
 
     // Getters and Setters
-    public ArrayList<BackCandidate> getCandidateArray(){
-        return candidateArray;
-    }
-
     public String getCVText(){
         return cvText;
     }
@@ -132,20 +128,20 @@ public class BackCV {
         }
     }
 
-    public String CVFileConvert(String cvFilePath){
-        if(cvFilePath.contains("txt") || cvFilePath.contains("pdf") || cvFilePath.contains("docx")){
-            try{
-                String cvFileContent = Files.readString(Paths.get(cvFilePath));
-                return cvFileContent;
-            } catch (Exception e) {
-                System.out.println(e);
-            }
-        }else{
-            System.out.println("Wrong file type");
-        }
-
-        return null;
-    }
+//    public String CVFileConvert(String cvFilePath){
+//        if(cvFilePath.contains("txt") || cvFilePath.contains("pdf") || cvFilePath.contains("docx")){
+//            try{
+//                String cvFileContent = Files.readString(Paths.get(cvFilePath));
+//                return cvFileContent;
+//            } catch (Exception e) {
+//                System.out.println(e);
+//            }
+//        }else{
+//            System.out.println("Wrong file type");
+//        }
+//
+//        return null;
+//    }
 
     public void cvKeywordsScore(){
         setCVScore(getCVScore() + (getExtractedKeywords().size()));
