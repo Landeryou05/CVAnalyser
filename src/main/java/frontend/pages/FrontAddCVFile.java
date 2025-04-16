@@ -173,6 +173,7 @@ public class FrontAddCVFile {
             frontAddCVFileInstance.setcandidateList(cvAnalyser.CVAnalyserMain(frontAddCVFileInstance.getChosenFile().toString()));
 
             rankedList.getRankedListArray().clear();
+
             for (BackCandidate candidate : frontAddCVFileInstance.getcandidateList()){
                 rankedList.setRankedListArray(candidate.getCandidateScore().toString(), candidate.getCandidateName(), candidate.getCandidateSkills(), candidate.getCandidateOrganisations());
             }

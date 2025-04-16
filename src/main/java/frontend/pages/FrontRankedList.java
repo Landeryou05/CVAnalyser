@@ -34,17 +34,6 @@ public class FrontRankedList {
                 graphics2D.fillRoundRect(0,0, getWidth(), getHeight(), 40,40);
             }
         };
-        JButton clearList = new JButton(){
-            @Override
-            protected void paintComponent(Graphics g){
-                Graphics2D graphics2D = (Graphics2D) g;
-                graphics2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-                graphics2D.setColor(new Color(85,85,85));
-                graphics2D.fillRoundRect(0,0, getWidth(), getHeight(), 20,20);
-
-                super.paintComponent(g);
-            }
-        };
         JButton refreshList = new JButton(){
             @Override
             protected void paintComponent(Graphics g){
@@ -87,12 +76,19 @@ public class FrontRankedList {
         pageTitle.setForeground(new Color(255,255,255));
         pageTitle.setFont(font.fontTitle());
 
-        // Defining attributes for rankedListTable
         DefaultTableModel table = new DefaultTableModel();
+        table.addColumn("Score");
+        table.addColumn("Name");
+        table.addColumn("Skills");
+        table.addColumn("Organisation");
+
+
+        // Defining attributes for rankedListTable
         JTable rankedListTable = new JTable(table);
         rankedListTable.setFont(font.fontElements());
-        rankedListTable.setPreferredScrollableViewportSize(new Dimension(320,100));
+        rankedListTable.setPreferredScrollableViewportSize(new Dimension(350,150));
         rankedListTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        rankedListTable.getColumnModel().getColumn(3).setPreferredWidth(125);
         rankedListTable.setDefaultEditor(Object.class, null);
         rankedListTable.setBackground(new Color(51,51,51));
         rankedListTable.setForeground(new Color(255,255,255));
@@ -107,18 +103,6 @@ public class FrontRankedList {
 
         // Defining attributes for rankedListTableScrollPane
         rankedListTableScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-
-        // Defining attributes for clearList
-        clearList.setText("Clear List");
-        clearList.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
-        clearList.setForeground(new Color(255, 255, 255));
-        clearList.setAlignmentX(Component.CENTER_ALIGNMENT);
-        clearList.setContentAreaFilled(false);
-        clearList.setFocusPainted(false);
-        clearList.setFont(font.fontElements());
-        clearList.addActionListener(e -> {
-            // ADD DELETE OBJECTS HERE
-        });
 
         // Defining attributes for refreshList
         refreshList.setText("Refresh List");
@@ -151,8 +135,6 @@ public class FrontRankedList {
         elementsPanel.add(pageTitle);
         elementsPanel.add(Box.createVerticalStrut(35));
         elementsPanel.add(rankedListTableScrollPane);
-        elementsPanel.add(Box.createVerticalStrut(25));
-        elementsPanel.add(clearList);
         elementsPanel.add(Box.createVerticalStrut(25));
         elementsPanel.add(refreshList);
         elementsPanel.add(Box.createVerticalStrut(25));
