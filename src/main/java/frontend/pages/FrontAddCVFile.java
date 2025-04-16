@@ -14,10 +14,9 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.ArrayList;
 
-public class FrontAddCVFile extends FrontRankedList {
+public class FrontAddCVFile {
 
     private ArrayList<BackCandidate> candidateList = new ArrayList<>();
-    private ArrayList<Integer> candidateScoreList = new ArrayList<>();
 
     File chosenFile = null;
 
@@ -36,8 +35,6 @@ public class FrontAddCVFile extends FrontRankedList {
     public void setChosenFile(File userSelectedFile){
         chosenFile = userSelectedFile;
     }
-
-
 
     public static JPanel addCVFile(JPanel cardPanel, CardLayout cardLayout){
         // Creating instances of components
@@ -173,11 +170,18 @@ public class FrontAddCVFile extends FrontRankedList {
         submitButton.setFont(font.fontElements());
         submitButton.addActionListener(e -> {
             BackCV cvAnalyser = new BackCV();
-            BackRankedList backRankedList = new BackRankedList();
-            FrontRankedList frontRankedList = new FrontRankedList();
+            FrontRankedList rankedList = new FrontRankedList();
 
             chosenFileDisplay.setText("(Select a File)");
             frontAddCVFileInstance.setcandidateList(cvAnalyser.CVAnalyserMain(frontAddCVFileInstance.getChosenFile().toString()));
+
+            System.out.println(frontAddCVFileInstance.getcandidateList());
+
+            rankedList.getRankedListArray().clear();
+
+            for (BackCandidate candidate : frontAddCVFileInstance.getcandidateList()){
+                rankedList.setRankedListArray(candidate.getCandidateScore().toString(), candidate.getCandidateName(), candidate.getCandidateSkills(), candidate.getCandidateOrganisations());
+            }
         });
 
         backButton.setText("Previous");

@@ -10,9 +10,10 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class FrontRankedList {
-    private ArrayList<BackCandidate> rankedListArray = new ArrayList<>();
+    private static ArrayList<Object[]> rankedListArray = new ArrayList<>();
 
     private String candidateScore;
     private String candidateName;
@@ -51,20 +52,14 @@ public class FrontRankedList {
         candidateOrganisations = setCandidateOrganisations;
     }
 
-    public ArrayList<BackCandidate> getRankedListArray(){
+    public ArrayList<Object[]> getRankedListArray(){
         return rankedListArray;
     }
 
-    public void setRankedListArray(ArrayList<BackCandidate> setRankedListArray){
-        rankedListArray = setRankedListArray;
-    }
+    public void setRankedListArray(String candidateScore, String candidateName, String candidateSkills, String candidateOrganisations){
 
-//    public void candidateInfo(String candidateScore, String candidateName, String candidateSkills, String candidateOrganisations){
-////        setCandidateScore(candidateScore);
-////        setCandidateName(candidateName);
-////        setCandidateSkills(candidateSkills);
-////        setCandidateOrganisations(candidateOrganisations);
-//    }
+        rankedListArray.add(new Object[]{candidateScore, candidateName, candidateSkills, candidateOrganisations});
+    }
 
     public static JPanel rankedList(JPanel cardPanel, CardLayout cardLayout){
         // Creating instances of components
@@ -147,17 +142,18 @@ public class FrontRankedList {
 //            candidateObjects.add(frontRankedList.candidateOrganisations);
 //        }
 
-        DefaultTableModel table = new DefaultTableModel();
 
-        table.addColumn("Rank");
-        table.addColumn("Name");
-        table.addColumn("Organisations");
-        table.addColumn("Keywords");
-        table.addColumn("CV");
 
-        table.addRow(new Object[]{"321", 'f', "fsdfsd", "ggg", 'f'});
+//        table.addColumn("Rank");
+//        table.addColumn("Name");
+//        table.addColumn("Organisations");
+//        table.addColumn("Keywords");
+//        table.addColumn("CV");
+//
+//        table.addRow(new Object[]{"321", 'f', "fsdfsd", "ggg", 'f'});
 
         // Defining attributes for rankedListTable
+        DefaultTableModel table = new DefaultTableModel();
         JTable rankedListTable = new JTable(table);
         rankedListTable.setFont(font.fontElements());
         rankedListTable.setPreferredScrollableViewportSize(new Dimension(320,100));
@@ -198,10 +194,12 @@ public class FrontRankedList {
         refreshList.setFocusPainted(false);
         refreshList.setFont(font.fontElements());
         refreshList.addActionListener(e -> {
-//            System.out.println(frontRankedListInstance.getCandidateScore());
-//            System.out.println(frontRankedListInstance.getCandidateName());
-//            System.out.println(frontRankedListInstance.getCandidateSkills());
-//            System.out.println(frontRankedListInstance.getCandidateOrganisations());
+            table.setRowCount(0);
+
+            for (Object[] rowData : rankedListArray){
+                System.out.println(Arrays.toString(rowData));
+                table.addRow(rowData);
+            }
 
         });
 
