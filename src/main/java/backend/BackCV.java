@@ -25,6 +25,10 @@ public class BackCV {
         return cvText;
     }
 
+    public void setCVText(String setCVText){
+        cvText = setCVText;
+    }
+
     public ArrayList<String> getExtractedName(){
         return extractedNameArrayList;
     }
@@ -68,18 +72,18 @@ public class BackCV {
     // Methods
     public BackCandidate CVAnalyserMain(String chosenFile){
         try{
-            cvText = (Files.readString(Paths.get(chosenFile)));
+            setCVText(Files.readString(Paths.get(chosenFile)));
         }catch (Exception e){
             System.out.println(e);
         }
 
-        CVTextAnalyserKeywords();
         CVTextAnalyserNLP();
+        CVTextAnalyserKeywords();
 
         cvKeywordsScore();
         cvNLPScore();
 
-        BackCandidate candidate = new BackCandidate(getCVScore(), getExtractedName().toString(), getExtractedKeywords().toString(), getExtractedOrganisations().toString());
+        BackCandidate candidate = new BackCandidate(getCVScore(), getExtractedName().toString(), getExtractedKeywords().toString(), getExtractedOrganisations().toString(), chosenFile);
 
         candidateArray.add(candidate);
 

@@ -18,8 +18,8 @@ public class FrontRankedList {
         return rankedListArray;
     }
 
-    public void setRankedListArray(String candidateScore, String candidateName, String candidateSkills, String candidateOrganisations){
-        rankedListArray.add(new Object[]{candidateScore, candidateName, candidateSkills, candidateOrganisations});
+    public void setRankedListArray(String candidateScore, String candidateName, String candidateSkills, String candidateOrganisations, String candidateFile){
+        rankedListArray.add(new Object[]{candidateScore, candidateName, candidateSkills, candidateOrganisations, candidateFile});
     }
 
     public static JPanel rankedList(JPanel cardPanel, CardLayout cardLayout){
@@ -82,6 +82,7 @@ public class FrontRankedList {
         table.addColumn("Name");
         table.addColumn("Skills");
         table.addColumn("Organisation");
+        table.addColumn("File");
 
 
         // Defining attributes for rankedListTable
@@ -89,7 +90,11 @@ public class FrontRankedList {
         rankedListTable.setFont(font.fontElements());
         rankedListTable.setPreferredScrollableViewportSize(new Dimension(350,150));
         rankedListTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-        rankedListTable.getColumnModel().getColumn(3).setPreferredWidth(125);
+        rankedListTable.getColumnModel().getColumn(0).setPreferredWidth(75);
+        rankedListTable.getColumnModel().getColumn(1).setPreferredWidth(150);
+        rankedListTable.getColumnModel().getColumn(2).setPreferredWidth(150);
+        rankedListTable.getColumnModel().getColumn(3).setPreferredWidth(150);
+        rankedListTable.getColumnModel().getColumn(4).setPreferredWidth(400);
         rankedListTable.setDefaultEditor(Object.class, null);
         rankedListTable.setBackground(new Color(51,51,51));
         rankedListTable.setForeground(new Color(255,255,255));

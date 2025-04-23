@@ -175,7 +175,7 @@ public class FrontAddCVFile {
             rankedList.getRankedListArray().clear();
 
             for (BackCandidate candidate : frontAddCVFileInstance.getcandidateList()){
-                rankedList.setRankedListArray(candidate.getCandidateScore().toString(), candidate.getCandidateName(), candidate.getCandidateSkills(), candidate.getCandidateOrganisations());
+                rankedList.setRankedListArray(candidate.getCandidateScore().toString(), candidate.getCandidateName(), candidate.getCandidateSkills(), candidate.getCandidateOrganisations(), candidate.getCandidateFile());
             }
         });
 

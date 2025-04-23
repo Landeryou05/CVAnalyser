@@ -5,6 +5,7 @@ public class BackCandidate {
     private String candidateName;
     private String candidateSkills;
     private String candidateOrganisations;
+    private String candidateFile;
 
     public Integer getCandidateScore(){
         return candidateScore;
@@ -22,11 +23,16 @@ public class BackCandidate {
         return candidateOrganisations;
     }
 
+    public String getCandidateFile(){
+        return candidateFile;
+    }
+
     // Candidate Constructor
-    public BackCandidate(Integer cvCandidateScore, String cvCandidateName, String cvCandidateSkills, String cvCandidateOrganisations){
+    public BackCandidate(Integer cvCandidateScore, String cvCandidateName, String cvCandidateSkills, String cvCandidateOrganisations, String cvCandidateFile){
         this.candidateScore = cvCandidateScore;
         this.candidateName = cvCandidateName;
         this.candidateSkills = cvCandidateSkills;
         this.candidateOrganisations = cvCandidateOrganisations;
+        this.candidateFile = cvCandidateFile;
     }
 }
