@@ -4,22 +4,17 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class BackRankedList {
-    public ArrayList<BackCandidate> rankedList(ArrayList<BackCandidate> candidateArray){
-        ArrayList<Integer> candidateScoreArray = new ArrayList<>();
+    public ArrayList<Object[]> rankedList(ArrayList<Object[]> candidateArray){
 
-        for (BackCandidate candidate : candidateArray){
-            candidateScoreArray.add(candidate.getCandidateScore());
-        }
+        Collections.sort(candidateArray, (candidateA, candidateB) -> {
+            int candidateAScore = Integer.parseInt(candidateA[0].toString());
+            int candidateBScore = Integer.parseInt(candidateB[0].toString());
 
-        if(candidateScoreArray.size() > 1){
-            for (int candidateScoreArrayLength : candidateScoreArray){
-                for (int i = 0; i < (candidateScoreArray.size() - 1); i++){
-                    if(candidateScoreArray.get(i) < candidateScoreArray.get(i + 1)){
-                        Collections.swap(candidateArray, i, i + 1);
-                    }
-                }
-            }
-        }
+            return Integer.compare(candidateBScore, candidateAScore);
+        });
+
+        //System.out.println(candidateArray);
+
         return candidateArray;
     }
 }

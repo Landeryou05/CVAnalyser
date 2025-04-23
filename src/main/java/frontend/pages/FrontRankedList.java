@@ -1,5 +1,6 @@
 package frontend.pages;
 
+import backend.BackRankedList;
 import frontend.FrontFont;
 
 import javax.swing.*;
@@ -114,6 +115,10 @@ public class FrontRankedList {
         refreshList.setFont(font.fontElements());
         refreshList.addActionListener(e -> {
             table.setRowCount(0);
+            BackRankedList rankedListInstance = new BackRankedList();
+
+            System.out.println(rankedListInstance.rankedList(rankedListArray));
+
             for (Object[] rowData : rankedListArray){
                 System.out.println(Arrays.toString(rowData));
                 table.addRow(rowData);
