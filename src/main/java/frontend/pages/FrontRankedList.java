@@ -122,10 +122,7 @@ public class FrontRankedList {
             table.setRowCount(0);
             BackRankedList rankedListInstance = new BackRankedList();
 
-            System.out.println(rankedListInstance.rankedList(rankedListArray));
-
             for (Object[] rowData : rankedListArray){
-                System.out.println(Arrays.toString(rowData));
                 table.addRow(rowData);
             }
         });
