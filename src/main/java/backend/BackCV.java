@@ -11,6 +11,7 @@ public class BackCV {
     // Instance Variables
     private String cvText;
     private Integer cvScore = 0;
+    private static StanfordCoreNLP pipeline;
 
     private static ArrayList<BackCandidate> candidateArray = new ArrayList<>();
 
@@ -21,6 +22,14 @@ public class BackCV {
     private ArrayList<String> extractedKeywordsArrayList = new ArrayList<>();
 
     // Getters and Setters
+    public StanfordCoreNLP getPipeline() {
+        return pipeline;
+    }
+
+    public void setPipeline(StanfordCoreNLP pipeline) {
+        this.pipeline = pipeline;
+    }
+
     public String getCVText(){
         return cvText;
     }
@@ -90,13 +99,31 @@ public class BackCV {
         return candidate;
     }
 
+    public void nlpInitialLoad(){
+        Runnable nlpThread = new Runnable(){
+            @Override
+            public void run(){
+                Properties properties = new Properties();
+                properties.setProperty("annotators", "tokenize,pos,lemma,ner");
+                setPipeline(new StanfordCoreNLP(properties));
+            }
+        };
+
+        Thread runNLPThread = new Thread(nlpThread);
+        runNLPThread.start();
+    }
 
     public void CVTextAnalyserNLP(){
-        Properties properties = new Properties();
-        properties.setProperty("annotators", "tokenize,pos,lemma,ner");
-        StanfordCoreNLP pipeLine = new StanfordCoreNLP(properties);
+        while (getPipeline() == null) {
+            try{
+                Thread.sleep(1000);
+            } catch (InterruptedException e){
+                e.printStackTrace();
+            }
+        }
 
         CoreDocument document = new CoreDocument(getCVText());
+        StanfordCoreNLP pipeLine = getPipeline();
         pipeLine.annotate(document);
 
         ArrayList<String> falsePositives = new ArrayList<>();

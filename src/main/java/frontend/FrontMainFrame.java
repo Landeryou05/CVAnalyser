@@ -1,5 +1,6 @@
 package frontend;
 
+import backend.BackCV;
 import frontend.pages.FrontRankedList;
 import frontend.pages.FrontAddCVFile;
 import frontend.pages.FrontMainMenu;
@@ -12,6 +13,9 @@ public class FrontMainFrame {
     private static JPanel cardPanel;
 
     public static JFrame mainFrame(){
+        BackCV preloadNLP = new BackCV();
+        preloadNLP.nlpInitialLoad();
+
         JFrame frame = new JFrame();
 
         frame.setTitle("CV Analyser | Main Menu");
