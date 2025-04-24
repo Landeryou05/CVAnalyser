@@ -36,8 +36,8 @@ public class BackCV {
         return cvText;
     }
 
-    public void setCVText(String setCVText){
-        cvText = setCVText;
+    public void setCVText(String cvText){
+        this.cvText = cvText;
     }
 
     public ArrayList<String> getExtractedName(){
@@ -76,16 +76,16 @@ public class BackCV {
         return cvScore;
     }
 
-    public void setCVScore(Integer calculatedCVScore){
-        this.cvScore = calculatedCVScore;
+    public void setCVScore(Integer cvScore){
+        this.cvScore = cvScore;
     }
 
     // Methods
-    public BackCandidate CVAnalyserMain(String chosenFile){
+    public BackCandidate cvAnalyserMain(String chosenFile){
         fileStringConversion(chosenFile);
 
-        CVTextAnalyserNLP();
-        CVTextAnalyserKeywords();
+        cvTextAnalyserNLP();
+        cvTextAnalyserKeywords();
 
         cvKeywordsScore();
         cvNLPScore();
@@ -125,7 +125,7 @@ public class BackCV {
         }
     }
 
-    public void CVTextAnalyserNLP(){
+    public void cvTextAnalyserNLP(){
         while (getPipeline() == null) {
             try{
                 Thread.sleep(1000);
@@ -155,7 +155,7 @@ public class BackCV {
         }
     }
 
-    public void CVTextAnalyserKeywords(){
+    public void cvTextAnalyserKeywords(){
         setCVKeywords("python");
         setCVKeywords("java");
         setCVKeywords("programming");

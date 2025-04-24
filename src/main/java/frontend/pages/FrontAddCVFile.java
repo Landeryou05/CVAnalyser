@@ -18,11 +18,11 @@ public class FrontAddCVFile {
     private ArrayList<BackCandidate> candidateList = new ArrayList<>();
     private File chosenFile = null;
 
-    public ArrayList<BackCandidate> getcandidateList(){
+    public ArrayList<BackCandidate> getCandidateList(){
         return candidateList;
     }
 
-    public void setcandidateList(BackCandidate candidate){
+    public void setCandidateList(BackCandidate candidate){
         candidateList.add(candidate);
     }
 
@@ -30,8 +30,8 @@ public class FrontAddCVFile {
         return chosenFile;
     }
 
-    public void setChosenFile(File userSelectedFile){
-        chosenFile = userSelectedFile;
+    public void setChosenFile(File chosenFile){
+        this.chosenFile = chosenFile;
     }
 
     public static JPanel addCVFile(JPanel cardPanel, CardLayout cardLayout){
@@ -170,11 +170,11 @@ public class FrontAddCVFile {
             FrontRankedList rankedList = new FrontRankedList();
 
             chosenFileDisplay.setText("(Select a File)");
-            frontAddCVFileInstance.setcandidateList(cvAnalyser.CVAnalyserMain(frontAddCVFileInstance.getChosenFile().toString()));
+            frontAddCVFileInstance.setCandidateList(cvAnalyser.cvAnalyserMain(frontAddCVFileInstance.getChosenFile().toString()));
 
             rankedList.getRankedListArray().clear();
 
-            for (BackCandidate candidate : frontAddCVFileInstance.getcandidateList()){
+            for (BackCandidate candidate : frontAddCVFileInstance.getCandidateList()){
                 rankedList.setRankedListArray(candidate.getCandidateScore().toString(), candidate.getCandidateName(), candidate.getCandidateSkills(), candidate.getCandidateOrganisations(), candidate.getCandidateFile());
             }
         });
