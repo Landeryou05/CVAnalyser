@@ -3,6 +3,7 @@ package frontend.pages;
 import backend.BackCV;
 import backend.BackCandidate;
 import frontend.FrontFont;
+import org.apache.tika.Tika;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -159,6 +160,7 @@ public class FrontAddCVFile {
             FrontRankedList rankedList = new FrontRankedList();
 
             chosenFileDisplay.setText("(Select a File)");
+
             frontAddCVFileInstance.setCandidateList(cvAnalyser.cvAnalyserMain(frontAddCVFileInstance.getChosenFile().toString()));
 
             rankedList.getRankedListArray().clear();
