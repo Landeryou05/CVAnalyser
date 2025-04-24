@@ -1,11 +1,13 @@
 package backend;
 
+import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Properties;
 
 import edu.stanford.nlp.pipeline.*;
+import org.apache.tika.Tika;
 
 public class BackCV {
     // Instance Variables
@@ -80,11 +82,7 @@ public class BackCV {
 
     // Methods
     public BackCandidate CVAnalyserMain(String chosenFile){
-        try{
-            setCVText(Files.readString(Paths.get(chosenFile)));
-        }catch (Exception e){
-            System.out.println(e);
-        }
+        fileStringConversion(chosenFile);
 
         CVTextAnalyserNLP();
         CVTextAnalyserKeywords();
@@ -111,6 +109,20 @@ public class BackCV {
 
         Thread runNLPThread = new Thread(nlpThread);
         runNLPThread.start();
+    }
+
+    public void fileStringConversion(String cvFile){
+        try{
+            setCVText(Files.readString(Paths.get(cvFile)));
+        }catch (Exception e){
+            try{
+                Tika fileConvert = new Tika();
+                File cvFilePathConvert = new File(cvFile);
+                setCVText(fileConvert.parseToString(cvFilePathConvert));
+            } catch (Exception f){
+                f.printStackTrace();
+            }
+        }
     }
 
     public void CVTextAnalyserNLP(){
