@@ -1,4 +1,3 @@
-import backend.BackCV;
 import frontend.FrontMainFrame;
 
 public class Main {

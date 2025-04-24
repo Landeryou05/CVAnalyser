@@ -13,8 +13,6 @@ public class BackRankedList {
             return Integer.compare(candidateBScore, candidateAScore);
         });
 
-        //System.out.println(candidateArray);
-
         return candidateArray;
     }
 }

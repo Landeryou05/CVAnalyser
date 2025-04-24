@@ -71,7 +71,6 @@ public class FrontAddCVFile {
                 graphics2D.fillRoundRect(0,0, getWidth(), getHeight(), 40,40);
             }
         };
-        //JComboBox fileTypeSelection = new JComboBox();
         JButton submitButton = new JButton(){
             @Override
             protected void paintComponent(Graphics g){
@@ -115,16 +114,6 @@ public class FrontAddCVFile {
         pageTitle.setAlignmentX(Component.CENTER_ALIGNMENT);
         pageTitle.setForeground(new Color(255,255,255));
         pageTitle.setFont(font.fontTitle());
-
-        // Defining attributes for fileTypeSelection
-//        fileTypeSelection.addItem("Text File (.txt)");
-//        fileTypeSelection.addItem("Microsoft Word Documents (.docx)");
-//        fileTypeSelection.addItem("PDF Documents (.pdf)");
-//        fileTypeSelection.setBackground(new Color(85,85,85));
-//        fileTypeSelection.setForeground(new Color(255,255,255));
-//        fileTypeSelection.setOpaque(true);
-//        fileTypeSelection.setVisible(true);
-//        fileTypeSelection.setFont(font.fontElements());
 
         // Defining attributes for openFileExplorer
         openFileExplorer.setBorder(BorderFactory.createEmptyBorder(16,25,15,15));
