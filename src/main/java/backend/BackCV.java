@@ -13,20 +13,24 @@ import org.apache.tika.Tika;
  * BackCV handles the rendering and extraction of the CV, so that key data, such as name, skills, etc can be extracted from the CV given.
  * */
 public class BackCV {
-    // Instance Variables
+    /*
+    * Declaring instance variables.
+    * */
     private String cvText;
     private Integer cvScore = 0;
     private static StanfordCoreNLP pipeline;
 
-    private static ArrayList<BackCandidate> candidateArray = new ArrayList<>();
+    private static ArrayList<BackCandidate> candidateArray = new ArrayList<>(); // Array list to store candidate data.
 
-    private ArrayList<String> cvKeywordsArrayList = new ArrayList<>();
+    private ArrayList<String> cvKeywordsArrayList = new ArrayList<>(); // Array to store the keywords before being added to extracted keywords array.
 
     private ArrayList<String> extractedNameArrayList = new ArrayList<>();
     private ArrayList<String> extractedOrganisationsArrayList = new ArrayList<>();
     private ArrayList<String> extractedKeywordsArrayList = new ArrayList<>();
 
-    // Getters and Setters
+    /*
+     * Getters and Setters.
+     * */
     public StanfordCoreNLP getPipeline() {
         return pipeline;
     }
