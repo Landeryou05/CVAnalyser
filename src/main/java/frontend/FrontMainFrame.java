@@ -12,11 +12,11 @@ import java.awt.*;
  * FrontMainFrame creates the window for the application, which is then called within the Main class.
  * */
 public class FrontMainFrame {
-
-
     // Static objects that are used for page switching functionality.
     private static CardLayout cardLayout;
     private static JPanel cardPanel;
+
+
 
 
 
@@ -38,6 +38,8 @@ public class FrontMainFrame {
 
 
 
+
+
         /*
          * DEFINING COMPONENT ATTRIBUTES
          * */
@@ -52,6 +54,8 @@ public class FrontMainFrame {
 
 
 
+
+
         /*
          * IMPLEMENTING CARDLAYOUT
          * */
@@ -63,6 +67,8 @@ public class FrontMainFrame {
         cardPanel.add(FrontMainMenu.mainMenuPanel(cardPanel, cardLayout), "MainMenu");
         cardPanel.add(FrontAddCVFile.addCVFile(cardPanel, cardLayout), "AddCVFile");
         cardPanel.add(FrontRankedList.rankedList(cardPanel, cardLayout), "RankedList");
+
+
 
 
 

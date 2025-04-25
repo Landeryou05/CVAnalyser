@@ -4,11 +4,18 @@ package backend;
  * BackCandidate provides the blueprint for creating a candidate object.
  * */
 public class BackCandidate {
+    /*
+     * Declaring instance variables.
+     * */
     private Integer candidateScore;
     private String candidateName;
     private String candidateSkills;
     private String candidateOrganisations;
     private String candidateFile;
+
+
+
+
 
     /*
     * Getters to access candidate attributes within FrontRankedList.
@@ -32,6 +39,10 @@ public class BackCandidate {
     public String getCandidateFile(){
         return candidateFile;
     }
+
+
+
+
 
     /**
      * Constructor that is used to create a candidate object.

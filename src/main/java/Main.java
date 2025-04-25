@@ -4,7 +4,6 @@ import frontend.FrontMainFrame;
  * Main holds the main method.
  * */
 public class Main {
-
     /**
      * main is the entry point to the program.
      * It calls the main frame, so that the panels can be added to the main frame.

@@ -7,7 +7,6 @@ import java.util.Collections;
  * BackRankedList handles the ranking of candidate objects stored within an array list.
  * */
 public class BackRankedList {
-
     /**
      * rankedList is the method that returns the sorted array of candidate objects.
      * @param candidateArray Array list containing candidate objects.

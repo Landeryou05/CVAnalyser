@@ -17,9 +17,15 @@ import java.util.ArrayList;
  * FrontAddCVFile handles rendering for the AddCVFile page.
  * */
 public class FrontAddCVFile {
-
+    /*
+     * Declaring instance variables.
+     * */
     private ArrayList<BackCandidate> candidateList = new ArrayList<>(); // Array list to store candidate objects.
     private File chosenFile = null;
+
+
+
+
 
     public ArrayList<BackCandidate> getCandidateList(){
         return candidateList;
@@ -36,6 +42,8 @@ public class FrontAddCVFile {
     public void setChosenFile(File chosenFile){
         this.chosenFile = chosenFile;
     }
+
+
 
 
 

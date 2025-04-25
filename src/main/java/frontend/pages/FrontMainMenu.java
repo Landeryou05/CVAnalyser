@@ -13,6 +13,10 @@ import java.awt.*;
 public class FrontMainMenu {
     private static JFrame mainFrame; // Static JFrame as parent frame for quitConfirm method param.
 
+
+
+
+
     /**
      * mainMenuPanel handles logic for rendering the main menu.
      * @param cardLayout This stores the data rendered as a cardLayout.
@@ -66,6 +70,8 @@ public class FrontMainMenu {
             }
         };
         FrontFont font = new FrontFont();
+
+
 
 
 
@@ -128,6 +134,8 @@ public class FrontMainMenu {
         quitButton.addActionListener(e -> { // Handles event for quit button.
             FrontQuit.quitConfirm(mainFrame);
         });
+
+
 
 
 

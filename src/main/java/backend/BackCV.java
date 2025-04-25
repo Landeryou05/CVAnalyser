@@ -28,6 +28,10 @@ public class BackCV {
     private ArrayList<String> extractedOrganisationsArrayList = new ArrayList<>();
     private ArrayList<String> extractedKeywordsArrayList = new ArrayList<>();
 
+
+
+
+
     /*
      * Getters and Setters.
      * */
@@ -87,6 +91,10 @@ public class BackCV {
         this.cvScore = cvScore;
     }
 
+
+
+
+
     /**
      * cvAnalyserMain is the entry point for the class, or where it is controlled.
      * @param chosenFile This is the path of the file that the user has chosen.
@@ -108,6 +116,10 @@ public class BackCV {
         return candidate;
     }
 
+
+
+
+
     /**
      * nlpInitialLoad handles the thread that preloads the NLP.
      * This saves time for when the user wants to add a CV by utilising more CPU threads.
@@ -126,6 +138,10 @@ public class BackCV {
         runNLPThread.start();
     }
 
+
+
+
+
     /**
      * fileStringConversion handles the conversion of the file to a string that can be processed by the NLP.
      * @param cvFile This is the path of the file that the user has chosen.
@@ -143,6 +159,10 @@ public class BackCV {
             }
         }
     }
+
+
+
+
 
     /**
      * cvTextAnalyserNLP handles the NLP functionality.
@@ -179,6 +199,10 @@ public class BackCV {
         }
     }
 
+
+
+
+
     /**
      * cvTextAnalyserKeywords searches through the extracted string and returns matched keywords.
      * */
@@ -199,12 +223,20 @@ public class BackCV {
         }
     }
 
+
+
+
+
     /**
      * cvKeywordsScore calculates the score based on keywords that have been extracted within the cvTextAnalyserKeywords method.
      * */
     public void cvKeywordsScore(){
         setCVScore(getCVScore() + (getExtractedKeywords().size()));
     }
+
+
+
+
 
     /**
      * cvNLPScore calculates the score based on organisations mentioned within the analysed CV.

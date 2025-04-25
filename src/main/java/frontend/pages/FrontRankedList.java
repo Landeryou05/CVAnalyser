@@ -16,9 +16,17 @@ import java.util.ArrayList;
 public class FrontRankedList {
     private static ArrayList<Object[]> rankedListArray = new ArrayList<>();
 
+
+
+
+
     public ArrayList<Object[]> getRankedListArray(){
         return rankedListArray;
     }
+
+
+
+
 
     /**
      * setRankedListArray takes in each attribute of candidate and adds an object to a pre-defined array list.
@@ -31,6 +39,8 @@ public class FrontRankedList {
     public void setRankedListArray(String candidateScore, String candidateName, String candidateSkills, String candidateOrganisations, String candidateFile){
         rankedListArray.add(new Object[]{candidateScore, candidateName, candidateSkills, candidateOrganisations, candidateFile});
     }
+
+
 
 
 
@@ -81,6 +91,8 @@ public class FrontRankedList {
 
 
 
+
+
         /*
          * DEFINING COMPONENT ATTRIBUTES
          * */
@@ -88,17 +100,20 @@ public class FrontRankedList {
         rankedListPanel.setBackground(new Color(30,30,30));
         rankedListPanel.setOpaque(true);
         rankedListPanel.setLayout(new GridBagLayout());
+
         // Defining attributes for elementsPanel
         elementsPanel.setOpaque(false);
         elementsPanel.setBorder(new EmptyBorder(30,30,30,30));
         elementsPanel.setLayout(new BoxLayout(elementsPanel, BoxLayout.Y_AXIS));
         elementsPanel.setBackground(new Color(55,55,55));
+
         // Defining attributes for pageTitle
         pageTitle.setText("CV Ranked List");
         pageTitle.setVisible(true);
         pageTitle.setAlignmentX(Component.CENTER_ALIGNMENT);
         pageTitle.setForeground(new Color(255,255,255));
         pageTitle.setFont(font.fontTitle());
+
         // Defining attributes for table.
         DefaultTableModel table = new DefaultTableModel();
         table.addColumn("Score"); // Add headings to the table.
@@ -106,6 +121,7 @@ public class FrontRankedList {
         table.addColumn("Skills");
         table.addColumn("Organisation");
         table.addColumn("File");
+
         // Defining attributes for rankedListTable
         JTable rankedListTable = new JTable(table);
         rankedListTable.setFont(font.fontElements());
@@ -119,14 +135,18 @@ public class FrontRankedList {
         rankedListTable.setDefaultEditor(Object.class, null); // Stops the user from being able to change data within a cell.
         rankedListTable.setBackground(new Color(51,51,51));
         rankedListTable.setForeground(new Color(255,255,255));
+
         // Defining attributes for rankedListTableHeader
         JTableHeader rankedListTableHeader = rankedListTable.getTableHeader();
         rankedListTableHeader.setFont(font.fontElements());
         rankedListTableHeader.setReorderingAllowed(false); // Stops user from being able to change order of columns.
+
         // Defining attributes for rankedListTable
         JScrollPane rankedListTableScrollPane = new JScrollPane(rankedListTable);
+
         // Defining attributes for rankedListTableScrollPane
         rankedListTableScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED); // Allows for horizontal scrolling if table size is bigger than the viewport.
+
         // Defining attributes for refreshList
         refreshList.setText("Refresh List");
         refreshList.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
@@ -151,6 +171,7 @@ public class FrontRankedList {
                 table.addRow(rowData);
             }
         });
+
         // Defining attributes for backButton
         backButton.setText("Previous");
         backButton.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
@@ -165,6 +186,8 @@ public class FrontRankedList {
 
 
 
+
+
         /*
          * ADDING COMPONENTS
          * */
@@ -176,6 +199,7 @@ public class FrontRankedList {
         elementsPanel.add(refreshList);
         elementsPanel.add(Box.createVerticalStrut(25));
         elementsPanel.add(backButton);
+
         // Adding components to rankedListPanel.
         rankedListPanel.add(elementsPanel);
 

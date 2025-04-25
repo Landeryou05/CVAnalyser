@@ -9,9 +9,6 @@ import java.io.InputStream;
  * FrontFont loads the font from Google Fonts and then returns fonts based on whether font is needed for elements or titles
  * */
 public class FrontFont {
-
-
-
     /**
      * fontTitle handles the font for title components.
      * @return fontTitle
@@ -29,6 +26,8 @@ public class FrontFont {
             return fontTitle;
         }
     }
+
+
 
 
 
