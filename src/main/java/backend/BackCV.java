@@ -9,6 +9,9 @@ import java.util.Properties;
 import edu.stanford.nlp.pipeline.*;
 import org.apache.tika.Tika;
 
+/**
+ * BackCV handles the rendering and extraction of the CV, so that key data, such as name, skills, etc can be extracted from the CV given.
+ * */
 public class BackCV {
     // Instance Variables
     private String cvText;
@@ -80,7 +83,11 @@ public class BackCV {
         this.cvScore = cvScore;
     }
 
-    // Methods
+    /**
+     * cvAnalyserMain is the entry point for the class, or where it is controlled.
+     * @param chosenFile This is the path of the file that the user has chosen.
+     * @return candidate
+     * */
     public BackCandidate cvAnalyserMain(String chosenFile){
         fileStringConversion(chosenFile);
 
@@ -97,12 +104,16 @@ public class BackCV {
         return candidate;
     }
 
+    /**
+     * nlpInitialLoad handles the thread that preloads the NLP.
+     * This saves time for when the user wants to add a CV by utilising more CPU threads.
+     * */
     public void nlpInitialLoad(){
         Runnable nlpThread = new Runnable(){
             @Override
             public void run(){
                 Properties properties = new Properties();
-                properties.setProperty("annotators", "tokenize,pos,lemma,ner");
+                properties.setProperty("annotators", "tokenize,pos,lemma,ner"); // Loading annotators and tokenisers for NLP usage.
                 setPipeline(new StanfordCoreNLP(properties));
             }
         };
@@ -111,6 +122,10 @@ public class BackCV {
         runNLPThread.start();
     }
 
+    /**
+     * fileStringConversion handles the conversion of the file to a string that can be processed by the NLP.
+     * @param cvFile This is the path of the file that the user has chosen.
+     * */
     public void fileStringConversion(String cvFile){
         try{
             setCVText(Files.readString(Paths.get(cvFile)));
@@ -125,6 +140,9 @@ public class BackCV {
         }
     }
 
+    /**
+     * cvTextAnalyserNLP handles the NLP functionality.
+     * */
     public void cvTextAnalyserNLP(){
         while (getPipeline() == null) {
             try{
@@ -134,20 +152,22 @@ public class BackCV {
             }
         }
 
-        CoreDocument document = new CoreDocument(getCVText());
-        StanfordCoreNLP pipeLine = getPipeline();
-        pipeLine.annotate(document);
+        CoreDocument document = new CoreDocument(getCVText()); // Document is the text that has been extracted within the fileStringConversion method.
+        StanfordCoreNLP pipeLine = getPipeline(); // Retrieves the pipeline loaded by the nlpInitialLoad method.
+        pipeLine.annotate(document); // Annotates the extracted string with tokens so that specific attributes can be extracted.
 
-        ArrayList<String> falsePositives = new ArrayList<>();
+        ArrayList<String> falsePositives = new ArrayList<>(); // Array of words that have been falsely extracted in the wrong entity.
         falsePositives.add("Python");
         falsePositives.add("Github");
 
+        // Checks for mentioned names within given CV file.
         for(CoreEntityMention nameEntity : document.entityMentions()){
             if(nameEntity.entityType().equals("PERSON") && !falsePositives.contains(nameEntity.text())){
                 setExtractedName(nameEntity.text());
             }
         }
 
+        // Checks for mentioned organisations within given CV file.
         for(CoreEntityMention organisation : document.entityMentions()) {
             if (organisation.entityType().equals("ORGANIZATION")) {
                 setExtractedOrganisations(organisation.text());
@@ -155,7 +175,11 @@ public class BackCV {
         }
     }
 
+    /**
+     * cvTextAnalyserKeywords searches through the extracted string and returns matched keywords.
+     * */
     public void cvTextAnalyserKeywords(){
+        // Hardcoded keywords, possibility of improving this for user-defined keywords.
         setCVKeywords("python");
         setCVKeywords("java");
         setCVKeywords("programming");
@@ -171,10 +195,17 @@ public class BackCV {
         }
     }
 
+    /**
+     * cvKeywordsScore calculates the score based on keywords that have been extracted within the cvTextAnalyserKeywords method.
+     * */
     public void cvKeywordsScore(){
         setCVScore(getCVScore() + (getExtractedKeywords().size()));
     }
 
+    /**
+     * cvNLPScore calculates the score based on organisations mentioned within the analysed CV.
+     * This disregards the name as it doesn't necessarily make the CV more effective.
+     * */
     public void cvNLPScore(){
         setCVScore(getCVScore() + (getExtractedOrganisations().size()));
     }

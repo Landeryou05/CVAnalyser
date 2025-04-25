@@ -26,9 +26,6 @@ public class FrontMainFrame {
      * @return frame rendered frame
      * */
     public static JFrame mainFrame(){
-
-
-
         /*
          * CREATING COMPONENT OBJECTS
          * */

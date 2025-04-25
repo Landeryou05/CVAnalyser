@@ -1,5 +1,8 @@
 package backend;
 
+/**
+ * BackCandidate provides the blueprint for creating a candidate object.
+ * */
 public class BackCandidate {
     private Integer candidateScore;
     private String candidateName;
@@ -7,6 +10,9 @@ public class BackCandidate {
     private String candidateOrganisations;
     private String candidateFile;
 
+    /*
+    * Getters to access candidate attributes within FrontRankedList.
+    * */
     public Integer getCandidateScore(){
         return candidateScore;
     }
@@ -27,7 +33,15 @@ public class BackCandidate {
         return candidateFile;
     }
 
-    // Candidate Constructor
+    /**
+     * Constructor that is used to create a candidate object.
+     * All parameters are passed as an argument with method call within FrontAddCVFile class.
+     * @param cvCandidateScore Score generated.
+     * @param cvCandidateName Name extracted.
+     * @param cvCandidateSkills Skills extracted.
+     * @param cvCandidateOrganisations Organisations or companies extracted.
+     * @param cvCandidateFile Path to file that has been chosen by the user.
+     * */
     public BackCandidate(Integer cvCandidateScore, String cvCandidateName, String cvCandidateSkills, String cvCandidateOrganisations, String cvCandidateFile){
         this.candidateScore = cvCandidateScore;
         this.candidateName = cvCandidateName;

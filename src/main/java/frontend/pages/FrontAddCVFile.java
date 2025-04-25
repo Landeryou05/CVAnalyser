@@ -3,7 +3,6 @@ package frontend.pages;
 import backend.BackCV;
 import backend.BackCandidate;
 import frontend.FrontFont;
-import org.apache.tika.Tika;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -14,9 +13,12 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.ArrayList;
 
+/**
+ * FrontAddCVFile handles rendering for the AddCVFile page.
+ * */
 public class FrontAddCVFile {
 
-    private ArrayList<BackCandidate> candidateList = new ArrayList<>();
+    private ArrayList<BackCandidate> candidateList = new ArrayList<>(); // Array list to store candidate objects.
     private File chosenFile = null;
 
     public ArrayList<BackCandidate> getCandidateList(){
@@ -35,8 +37,18 @@ public class FrontAddCVFile {
         this.chosenFile = chosenFile;
     }
 
+
+
+    /**
+     * addCVFile handles logic for rendering the addCVFile page.
+     * @param cardLayout This stores the data rendered as a cardLayout.
+     * @param cardPanel This is the panel where cardLayout is added.
+     * @return addCVPanel This is the panel which all components are added to.
+     * */
     public static JPanel addCVFile(JPanel cardPanel, CardLayout cardLayout){
-        // Creating instances of components
+        /*
+         * CREATING COMPONENT OBJECTS
+         * */
         JPanel addCVPanel = new JPanel();
         addCVPanel.setBounds(150,150,150,150);
         JPanel selectedFilePanel = new JPanel(){
@@ -95,6 +107,11 @@ public class FrontAddCVFile {
             }
         };
 
+
+
+        /*
+         * DEFINING COMPONENT ATTRIBUTES
+         * */
         // Defining attributes for addCVPanel
         addCVPanel.setBackground(new Color(30,30,30));
         addCVPanel.setOpaque(true);
@@ -125,22 +142,25 @@ public class FrontAddCVFile {
         openFileExplorer.setText("Choose File");
         openFileExplorer.setFont(font.fontElements());
 
+        // Defining attributes for chosenFileDisplay
         chosenFileDisplay.setPreferredSize(new Dimension(150, 50));
         chosenFileDisplay.setFont(font.fontElements());
         chosenFileDisplay.setForeground(new Color(255,255,255));
         chosenFileDisplay.setBorder(BorderFactory.createEmptyBorder(15,15,15,0));
 
-        FrontAddCVFile frontAddCVFileInstance = new FrontAddCVFile();
+        FrontAddCVFile frontAddCVFileInstance = new FrontAddCVFile(); // Creating an instance of FrontAddCVFile to then set the chosen file in the setter method.
 
         openFileExplorer.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) { // Adding event handler for clicking the select file button and then selecting a file.
                 JFileChooser addCVFile = new JFileChooser();
                 addCVFile.setDialogTitle("Choose a File");
+                // Setting file types in the filter of user's chosen directory.
                 addCVFile.addChoosableFileFilter(new FileNameExtensionFilter("PDF Documents (.pdf)", "pdf"));
                 addCVFile.addChoosableFileFilter(new FileNameExtensionFilter("Microsoft Word Documents (.docx)", "docx"));
                 addCVFile.addChoosableFileFilter(new FileNameExtensionFilter("Text File (.txt)", "txt"));
 
+                // sets the chosen file as the path of the file selected by the user if a file is chosen by the user.
                 if(addCVFile.showOpenDialog(null) == JFileChooser.APPROVE_OPTION){
                     frontAddCVFileInstance.setChosenFile(addCVFile.getSelectedFile());
                     chosenFileDisplay.setText(frontAddCVFileInstance.getChosenFile().getName());
@@ -148,6 +168,7 @@ public class FrontAddCVFile {
             }
         });
 
+        // Defining attributes for submitButton
         submitButton.setText("Submit CV");
         submitButton.setBorder(BorderFactory.createEmptyBorder(15, 15,15,15));
         submitButton.setForeground(new Color(255, 255, 255));
@@ -170,6 +191,7 @@ public class FrontAddCVFile {
             }
         });
 
+        // Defining attributes for backButton
         backButton.setText("Previous");
         backButton.setBorder(BorderFactory.createEmptyBorder(15,15,15,15));
         backButton.setForeground(new Color(255, 255, 255));
@@ -181,9 +203,16 @@ public class FrontAddCVFile {
             cardLayout.show(cardPanel, "MainMenu");
         });
 
+
+
+        /*
+         * ADDING COMPONENTS
+         * */
+        // Adding components to selectedFilePanel
         selectedFilePanel.add(openFileExplorer);
         selectedFilePanel.add(chosenFileDisplay);
 
+        // Adding components to elementsPanel
         elementsPanel.add(pageTitle);
         elementsPanel.add(Box.createVerticalStrut(35));
         elementsPanel.add(selectedFilePanel);
@@ -192,6 +221,7 @@ public class FrontAddCVFile {
         elementsPanel.add(Box.createVerticalStrut(25));
         elementsPanel.add(backButton);
 
+        // Adding components to addCVPanel
         addCVPanel.add(elementsPanel);
 
         return addCVPanel;

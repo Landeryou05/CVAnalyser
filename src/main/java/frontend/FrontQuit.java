@@ -8,15 +8,11 @@ import java.awt.*;
  * FrontQuit handles the process of closing the application.
  * */
 public class FrontQuit {
-
     /**
      * quitConfirm takes mainMenuPanel and then shows a dialog to confirm quit.
      * @param parentFrame takes parentFrame and adds dialog.
      * */
     public static void quitConfirm(JFrame parentFrame){
-
-
-
         /*
          * CREATING COMPONENT OBJECTS
          * */
