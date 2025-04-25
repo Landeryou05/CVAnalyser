@@ -12,8 +12,8 @@
 * There has also been some deviations in method, some class and variable names as I want to ensure clarity, simplicity and modularity throughout the entire program.
 *
 * REFERENCES
-* App Logo / Favicon - https://www.flaticon.com/free-icon/preview_2356595?term=magnifying+glass&related_id=2356595
-* Montserrat Font (Google Font) - https://fonts.google.com/specimen/Montserrat
+* App Logo / Favicon - https://www.flaticon.com/free-icon/preview_2356595?term=magnifying+glass&related_id=2356595 - (Freepik, 2025)
+* Montserrat Font (Google Font) - https://fonts.google.com/specimen/Montserrat - (Google, 2025)
 * */
 
 import frontend.FrontMainFrame;
