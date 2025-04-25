@@ -34,7 +34,7 @@ public class FrontMainFrame {
         BackCV preloadNLP = new BackCV(); // Creating BackCV object.
         preloadNLP.nlpInitialLoad(); // Start multithreading process to preload NLP.
 
-        Image favicon = Toolkit.getDefaultToolkit().getImage("Resources/Logo.jpg"); // Creating image component to load favicon.
+        Image favicon = Toolkit.getDefaultToolkit().getImage("Resources/Logo.png"); // Creating image component to load favicon.
 
 
 

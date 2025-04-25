@@ -10,6 +10,10 @@
 * This has also had a direct impact on the usage of my planned classes (within the 'backend' package), as it deviates from how they are accessed and utilised.
 * I have also taken out the planned KeyboardReader class, as there is a GUI and console input doesn't need to be read.
 * There has also been some deviations in method, some class and variable names as I want to ensure clarity, simplicity and modularity throughout the entire program.
+*
+* REFERENCES
+* App Logo / Favicon - https://www.flaticon.com/free-icon/preview_2356595?term=magnifying+glass&related_id=2356595
+* Montserrat Font (Google Font) - https://fonts.google.com/specimen/Montserrat
 * */
 
 import frontend.FrontMainFrame;
