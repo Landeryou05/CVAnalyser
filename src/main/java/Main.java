@@ -1,10 +1,4 @@
 /*
-* SID
-* 2407888
-*
-* GROUP NAME
-* JAMH
-*
 * DEVIATIONS FROM PLAN
 * As part of the plan, there wasn't a GUI. I have since added a GUI and therefore, added more code that has wasn't initially planned (mainly within the 'frontend' package).
 * This has also had a direct impact on the usage of my planned classes (within the 'backend' package), as it deviates from how they are accessed and utilised.
