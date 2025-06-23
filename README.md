@@ -3,6 +3,10 @@
 ## Description
 - This is a project for software principles, where I need to create an application to allow a CV input and then display a ranked list based on the ranking of CV strength, which is evaluated with Stanford NLP usage.
 
+<img src="/ReadmeImages/1.jpg" alt="Description" width="300"/>
+<img src="/ReadmeImages/2.jpg" alt="Description" width="300"/>
+<img src="/ReadmeImages/3.jpg" alt="Description" width="300"/>
+
 ## Prerequisites
 - Java 11 or Newer
 - Apache Maven
