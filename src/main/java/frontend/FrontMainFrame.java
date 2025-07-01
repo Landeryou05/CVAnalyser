@@ -2,7 +2,6 @@ package frontend;
 
 import frontend.pages.FrontRankedList;
 import frontend.pages.FrontAddCVFile;
-import frontend.pages.FrontJobDescription;
 import frontend.pages.FrontMainMenu;
 
 import javax.swing.*;
@@ -68,7 +67,6 @@ public class FrontMainFrame {
 
         // Adding components to cardPanel
         cardPanel.add(FrontMainMenu.mainMenuPanel(cardPanel, cardLayout), "MainMenu");
-        cardPanel.add(FrontJobDescription.jobDescription(cardPanel, cardLayout), "JobDescription");
         cardPanel.add(FrontAddCVFile.addCVFile(cardPanel, cardLayout), "AddCVFile");
         cardPanel.add(FrontRankedList.rankedList(cardPanel, cardLayout), "RankedList");
 
