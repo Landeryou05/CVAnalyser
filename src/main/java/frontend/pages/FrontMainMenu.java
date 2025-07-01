@@ -49,6 +49,16 @@ public class FrontMainMenu {
                 super.paintComponent(g);
             }
         };
+        JButton jobDescription = new JButton(){
+            @Override
+            protected void paintComponent(Graphics g){
+                Graphics2D graphics2D = (Graphics2D) g;
+                graphics2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                graphics2D.setColor(new Color(85,85,85));
+                graphics2D.fillRoundRect(0,0, getWidth(), getHeight(), 20,20);
+                super.paintComponent(g);
+            }
+        };
         JButton cvRankedListButton = new JButton(){
             @Override
             protected void paintComponent(Graphics g){
@@ -109,6 +119,19 @@ public class FrontMainMenu {
             cardLayout.show(cardPanel, "AddCVFile");
         });
 
+        // Defining attributes to jobDescription
+        jobDescription.setText("Job Description");
+        jobDescription.setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
+        jobDescription.setForeground(new Color(255, 255, 255));
+        jobDescription.setAlignmentX(Component.CENTER_ALIGNMENT);
+        jobDescription.setFont(font.fontElements());
+        jobDescription.setContentAreaFilled(false);
+        jobDescription.setFocusPainted(false);
+
+        jobDescription.addActionListener(e -> {
+            cardLayout.show(cardPanel, "JobDescription");
+        });
+
         // Defining attributes to cvRankedList
         cvRankedListButton.setText("Display Ranked List");
         cvRankedListButton.setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
@@ -144,11 +167,13 @@ public class FrontMainMenu {
          * */
         // Adding components to elementsPanel
         elementsPanel.add(pageTitle);
-        elementsPanel.add(Box.createVerticalStrut(45));
+        elementsPanel.add(Box.createVerticalStrut(40));
         elementsPanel.add(addCVButton);
-        elementsPanel.add(Box.createVerticalStrut(35));
+        elementsPanel.add(Box.createVerticalStrut(30));
+        elementsPanel.add(jobDescription);
+        elementsPanel.add(Box.createVerticalStrut(30));
         elementsPanel.add(cvRankedListButton);
-        elementsPanel.add(Box.createVerticalStrut(35));
+        elementsPanel.add(Box.createVerticalStrut(30));
         elementsPanel.add(quitButton);
 
         // Adding elements to mainPanel

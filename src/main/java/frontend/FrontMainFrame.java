@@ -1,11 +1,14 @@
 package frontend;
 
-import backend.BackCV;
 import frontend.pages.FrontRankedList;
 import frontend.pages.FrontAddCVFile;
+import frontend.pages.FrontJobDescription;
 import frontend.pages.FrontMainMenu;
 
 import javax.swing.*;
+
+import backend.NLPInitialLoad;
+
 import java.awt.*;
 
 /**
@@ -31,8 +34,8 @@ public class FrontMainFrame {
          * */
         JFrame frame = new JFrame();
 
-        BackCV preloadNLP = new BackCV(); // Creating BackCV object.
-        preloadNLP.nlpInitialLoad(); // Start multithreading process to preload NLP.
+        NLPInitialLoad initialLoad = new NLPInitialLoad(); // Creating BackCV object.
+        initialLoad.nlpInitialLoad(); // Start multithreading process to preload NLP.
 
         Image favicon = Toolkit.getDefaultToolkit().getImage("Resources/Logo.png"); // Creating image component to load favicon.
 
@@ -65,6 +68,7 @@ public class FrontMainFrame {
 
         // Adding components to cardPanel
         cardPanel.add(FrontMainMenu.mainMenuPanel(cardPanel, cardLayout), "MainMenu");
+        cardPanel.add(FrontJobDescription.jobDescription(cardPanel, cardLayout), "JobDescription");
         cardPanel.add(FrontAddCVFile.addCVFile(cardPanel, cardLayout), "AddCVFile");
         cardPanel.add(FrontRankedList.rankedList(cardPanel, cardLayout), "RankedList");
 

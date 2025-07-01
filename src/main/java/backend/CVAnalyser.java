@@ -12,7 +12,7 @@ import org.apache.tika.Tika;
 /**
  * BackCV handles the rendering and extraction of the CV, so that key data, such as name, skills, etc can be extracted from the CV given.
  * */
-public class BackCV {
+public class CVAnalyser {
     /*
     * Declaring instance variables.
     * */
@@ -20,7 +20,7 @@ public class BackCV {
     private Integer cvScore = 0;
     private static StanfordCoreNLP pipeline;
 
-    private static ArrayList<BackCandidate> candidateArray = new ArrayList<>(); // Array list to store candidate data.
+    private static ArrayList<Candidate> candidateArray = new ArrayList<>(); // Array list to store candidate data.
 
     private ArrayList<String> cvKeywordsArrayList = new ArrayList<>(); // Array to store the keywords before being added to extracted keywords array.
 
@@ -35,14 +35,6 @@ public class BackCV {
     /*
      * Getters and Setters.
      * */
-    public StanfordCoreNLP getPipeline() {
-        return pipeline;
-    }
-
-    public void setPipeline(StanfordCoreNLP pipeline) {
-        this.pipeline = pipeline;
-    }
-
     public String getCVText(){
         return cvText;
     }
@@ -100,7 +92,7 @@ public class BackCV {
      * @param chosenFile This is the path of the file that the user has chosen.
      * @return candidate
      * */
-    public BackCandidate cvAnalyserMain(String chosenFile){
+    public Candidate cvAnalyserMain(String chosenFile){
         fileStringConversion(chosenFile);
 
         cvTextAnalyserNLP();
@@ -109,33 +101,11 @@ public class BackCV {
         cvKeywordsScore();
         cvNLPScore();
 
-        BackCandidate candidate = new BackCandidate(getCVScore(), getExtractedName().toString(), getExtractedKeywords().toString(), getExtractedOrganisations().toString(), chosenFile);
+        Candidate candidate = new Candidate(getCVScore(), getExtractedName().toString(), getExtractedKeywords().toString(), getExtractedOrganisations().toString(), chosenFile);
 
         candidateArray.add(candidate);
 
         return candidate;
-    }
-
-
-
-
-
-    /**
-     * nlpInitialLoad handles the thread that preloads the NLP.
-     * This saves time for when the user wants to add a CV by utilising more CPU threads.
-     * */
-    public void nlpInitialLoad(){
-        Runnable nlpThread = new Runnable(){
-            @Override
-            public void run(){
-                Properties properties = new Properties();
-                properties.setProperty("annotators", "tokenize,pos,lemma,ner"); // Loading annotators and tokenisers for NLP usage.
-                setPipeline(new StanfordCoreNLP(properties));
-            }
-        };
-
-        Thread runNLPThread = new Thread(nlpThread);
-        runNLPThread.start();
     }
 
 
@@ -168,7 +138,9 @@ public class BackCV {
      * cvTextAnalyserNLP handles the NLP functionality.
      * */
     public void cvTextAnalyserNLP(){
-        while (getPipeline() == null) {
+        NLPInitialLoad initialLoad = new NLPInitialLoad();
+
+        while (initialLoad.getPipeline() == null) {
             try{
                 Thread.sleep(1000);
             } catch (InterruptedException e){
@@ -177,7 +149,7 @@ public class BackCV {
         }
 
         CoreDocument document = new CoreDocument(getCVText()); // Document is the text that has been extracted within the fileStringConversion method.
-        StanfordCoreNLP pipeLine = getPipeline(); // Retrieves the pipeline loaded by the nlpInitialLoad method.
+        StanfordCoreNLP pipeLine = initialLoad.getPipeline(); // Retrieves the pipeline loaded by the nlpInitialLoad method.
         pipeLine.annotate(document); // Annotates the extracted string with tokens so that specific attributes can be extracted.
 
         ArrayList<String> falsePositives = new ArrayList<>(); // Array of words that have been falsely extracted in the wrong entity.
